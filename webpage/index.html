@@ -1,0 +1,1000 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Automation with Python</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+div {
+  text-align: justify;
+  text-justify: inter-word;
+}
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body ><article id="ca421016-512d-45b5-8bc5-5051eb878db5" class="page sans"><header><h1 class="page-title">Automation</h1></header><div class="page-body"><p id="8a70d1dc-e0af-4990-854f-7e2bbfdd5089" class="">Although we might not realize it, we reap the benefits of automation all the time in our daily lives. Do you ever pay your bills with scheduled payments or use a self check out at the grocery store? I always set my coffee machine to start brewing before I&#x27;ve even gotten out of bed. The promise of fresh coffee makes early mornings way easier. Automation is the process of replacing a manual step with one that happens automatically. Take a traffic light for example, which continuously regulates the flow of vehicles at an intersection. A traffic light requires a human intervention only when it needs repairs or maintenance. The automatic regulation of traffic means that humans don&#x27;t have to stand at the intersection manually signaling when cars should stop or go. Instead, people can concentrate on more complex, creative, or difficult tasks like focusing on where you&#x27;re driving. What&#x27;s more, traffic lights don&#x27;t get tired, bored, or accidentally display a green light when they meant red. This highlights another benefit of automation consistency. Let&#x27;s face it, us humans are flawed and sometimes we make mistakes, a human performing the same tasks hundreds of times will never be as consistent as a machine doing the same thing. But for all of its advantages automation isn&#x27;t a solution for every situation, some tasks just aren&#x27;t suited for automation. For example, they may require a degree of creativity or flexibility that automatic systems can&#x27;t provide or for more complicated or less frequently executed tasks creating the automation may actually be more effort or cost than it&#x27;s worth. Think about when you get a haircut. What would it take to automate the actions of cutting hair with a machine? The clients height, the shape of their head, their current hair length, and desired hairstyle would all need to be taken into account when designing the automatic system. We need to replicate the creativity and skills of a trained specialist along with extensive testing to ensure the clients safety and quality haircut. And if you&#x27;ve ever had a bad experience at a hair salon, you know quality can be subjective. In this case, the cost and effort of automation just isn&#x27;t worth the benefits of an automatic haircut would provide which is why we don&#x27;t have robot hairstylists. Not too complex, right? Automation is a powerful tool when used in the right place at the right moment. It can save time, reduce errors, increase consistency, and provide a way to centralized solutions and mistakes making them easier to fix. Throughout this course, and an upcoming ones we&#x27;ll be talking about when it makes sense to apply automation and exactly how you do it. Eventually knowing when and where to use automation will become automatic for you.</p><p id="e92fa56d-89c6-46b4-b859-cca582aa1ea4" class="">
+</p><h1 id="9a2186f3-3e2f-4d51-a1f8-6586520df843" class="">Get your Computer work for you-</h1><p id="0c9fb73d-8d59-4a63-b49c-47c41de5a2e5" class="">Working in IT, a lot of what we do boils down to using a computer to perform a certain task. In your job you might create user accounts, configure the network, install software, backup existing data, or execute a whole range of other computer based tasks from day to day. Back in my first IT job, I realized that every day I came into work I typed the same three commands to authenticate into systems. Those credentials timed out everyday by design, for security reasons, so I created a script that would automatically run these commands for me every morning to avoid having to type them myself. Funny enough, the team that monitors anomalous activity discovered my little invention and contacted me to remove it, oops. Tasks performed by a computer that need to be done multiple times with little variation are really well suited for automation, because when you automate a task you avoid the possibility of human errors, and reduce the time it takes to do it. Imagine this scenario, your company had a booth at a recent conference and has gathered a huge list of emails from people interested in learning more about your products. You want to send these people your monthly email newsletter, but some of the people on the list are already subscribed to receive it. So how do you make sure everyone receives your newsletter, without accidentally sending it to the same person twice? Well, you could manually check each email address one by one to make sure you only add new ones to the list, sounds boring and inefficient, right? It could be, and it&#x27;s also more error prone, you might accidentally miss new emails, or add emails that were already there, or it might get so boring you fall asleep at your desk. Even your automated coffee machine won&#x27;t help you out there. So what could you do instead? You could get the computer to do the work for you. You could write a program that checks for duplicates, and then adds each new email to the list. Your computer will do exactly as its told no matter how many emails there are in the list, so it won&#x27;t get tired or make any mistakes. Even better, once you&#x27;ve written the program you can use the same code in the future situations, saving you even more time, pretty cool, right? It gets better, think about when you&#x27;re going to send these emails out, if you send them out manually you&#x27;ll have to send the same email to everybody, personalizing the emails would be way too much manual work. If instead you use automation to send them, you could have the name and company of each person added to the email automatically. The result? More effective emails, without you spending hours inserting names into the text. Automating tasks allows you to focus on projects that are a better use of your time, letting computers do the boring stuff for you. Learning how to program is the first step to being able to do this, if you want to to get computers to do the work for you, you&#x27;re in the right place. Earlier in this video I told you about the first task I ever automated, now I want to tell you about the coolest thing I ever automated. It was a script that changed a bunch of access permissions for a whole lot of Google Internal Services. The script reversed a large directory tree with tons of different files, checked the file contents, and then updated the permissions to the services based on the conditions that I laid out in the script. Okay, I admit I&#x27;m a total nerd, but I still think it&#x27;s really cool. Next up, it&#x27;s time to share your ideas. What things would you like to automate using programming? While these discussion prompts are optional, they&#x27;re really fun. Seriously, they let you get to know your fellow learners a bit, and collaborate on ideas and insights. Make sure you read what others are saying, they may give you ideas that you haven&#x27;t even thought of. After that, you&#x27;re ready to take your very first quiz of the course. Don&#x27;t worry, it&#x27;s just for practice.</p><h2 id="8d6db064-8863-4bc9-be98-9b36f56cd750" class="">Implicit vs Explicit Conversion</h2><hr id="ccbce8a9-54e8-4471-a3f9-4bd348918490"/><p id="408d23a5-b810-4f47-898b-31fefde3370b" class="">As we saw earlier in the video, some data types can be mixed and matched due to implicit conversion. Implicit conversion is where the interpreter helps us out and automatically converts one data type into another, without having to explicitly tell it to do so.</p><p id="40877762-74b1-4768-a573-a2f59a0fd2f2" class="">By contrast, explicit conversion is where we manually convert from one data type to another by calling the relevant function for the data type we want to convert to. We used this in our video example when we wanted to print a number alongside some text. Before we could do that, we needed to call the <em>str()</em> function to convert the number into a string. Once the number was explicitly converted to a string, we could join it with the rest of our textual string and print the result.</p><p id="6ccab2f1-d985-40f3-85a9-96edbaa1928e" class="">
+</p><h2 id="2b8b7edc-78e0-42cf-af67-09c9ffa5a3ea" class="">Returning Values Using Functions</h2><hr id="cf056b74-351c-4eff-b561-4e1986ffd0cd"/><p id="237f36ad-447e-44e0-948d-7d07da24042d" class="">Sometimes we don&#x27;t want a function to simply run and finish. We may want a function to manipulate data we passed it and then return the result to us. This is where the concept of return values comes in handy. We use the return keyword in a function, which tells the function to pass data back. When we call the function, we can store the returned value in a variable. Return values allow our functions to be more flexible and powerful, so they can be reused and called multiple times.</p><p id="c05ab899-9676-4366-bc33-faf957fe24de" class="">Functions can even return multiple values. Just don&#x27;t forget to store all returned values in variables! You could also have a function return nothing, in which case the function simply exits.</p><p id="2612e1fa-402f-4a8e-8150-3b2af5d6a6e8" class="">
+</p><h2 id="005185ac-e386-4603-9782-0eec958f2cdb" class="">Defining Functions Recap</h2><hr id="6ecb2adb-848a-4d89-a59b-911dc49dd49c"/><p id="e6b6056a-e58e-4099-9602-f953567755d1" class="">We looked at a few examples of built-in functions in Python, but being able to define your own functions is incredibly powerful. We start a function definition with the def keyword, followed by the name we want to give our function. After the name, we have the parameters, also called arguments, for the function enclosed in parentheses. A function can have no parameters, or it can have multiple parameters. Parameters allow us to call a function and pass it data, with the data being available inside the function as variables with the same name as the parameters. Lastly, we put a colon at the end of the line.</p><p id="8abd9a47-fe4c-4a5f-abaf-1ac7675b1608" class="">After the colon, the function body starts. It’s important to note that in Python the function body is delimited by indentation. This means that all code indented to the right following a function definition is part of the function body. The first line that’s no longer indented is the boundary of the function body. It’s up to you how many spaces you use when indenting -- just make sure to be consistent. So if you choose to indent with four spaces, you need to use four spaces everywhere in your code.</p><p id="2ae20e03-8615-4ae5-908a-e27a1cf2b415" class="">
+</p><h2 id="c7e25e31-16eb-49f7-a6ae-8d0fcc8880f2" class="">Comparison Operators</h2><hr id="a52cfe70-1282-4ab1-88fc-a5562d0e0576"/><p id="57cbadc9-174e-42fa-8e73-ffa41463360b" class="">In Python, we can use comparison operators to compare values. When a comparison is made, Python returns a boolean result, or simply a True or False.</p><ul id="ba31b823-3faa-4865-82c0-2b3048447fef" class="bulleted-list"><li>To check if two values are the same, we can use the equality operator: <strong>==</strong> </li></ul><ul id="9b453264-e2ea-4f17-bb37-91e97826de7e" class="bulleted-list"><li>To check if two values are not the same, we can use the not equals operator: <strong>!=</strong> </li></ul><p id="f8d7cfca-91f6-4b7d-b071-baa520611f44" class="">We can also check if values are greater than or lesser than each other using <strong>&gt;</strong> and <strong>&lt;</strong>. If you try to compare data types that aren’t compatible, like checking if a string is greater than an integer, Python will throw a <strong>TypeError</strong>.</p><p id="20cd6539-57e5-4ddb-ace6-2739ede94402" class="">We can make very complex comparisons by joining statements together using logical operators with our comparison operators. These logical operators are <strong>and</strong>, <strong>or</strong>, and <strong>not</strong>. When using the <strong>and</strong> operator, both sides of the statement being evaluated must be true for the whole statement to be true. When using the <strong>or</strong> operator, if either side of the comparison is true, then the whole statement is true. Lastly, the <strong>not</strong> operator simply inverts the value of the statement immediately following it. So if a statement evaluates to True, and we put the <strong>not</strong> operator in front of it, it would become False.</p><p id="c40f09cb-f1fa-4dd6-ae8f-58f5f29cd056" class="">
+</p><h1 id="f617967c-ae59-4942-9bc0-23274554e97b" class="">Branching</h1><h2 id="c9bf18bf-74ee-4b49-bd8e-d8ce2778b3e4" class="">if Statements Recap</h2><hr id="9c044823-8b75-45f0-a30d-ec8b8478db64"/><p id="47d48bb5-e153-43a5-87f6-8691fd005030" class="">We can use the concept of <strong>branching</strong> to have our code alter its execution sequence depending on the values of variables. We can use an <em>if</em> statement to evaluate a comparison. We start with the <em>if</em> keyword, followed by our comparison. We end the line with a colon. The body of the <em>if</em> statement is then indented to the right. If the comparison is <em><strong>True</strong></em>, the code inside the <em>if</em> body is executed. If the comparison evaluates to <em><strong>False</strong></em><em>,</em> then the code block is skipped and will not be run.</p><p id="820e00fd-e4a7-422f-b26d-ebb93c373b43" class="">
+</p><h2 id="5b643508-5ee5-4c48-96d3-b2ebf12929fe" class="">else Statements and the Modulo Operator</h2><hr id="ba00911c-a1d2-47c5-9713-3fdfec39a934"/><p id="80938147-8761-41ec-a3b9-65360865ca90" class="">We just covered the <em>if</em> statement, which executes code if an evaluation is true and skips the code if it’s false. But what if we wanted the code to do something different if the evaluation is false? We can do this using the <em>else</em> statement. The <em>else</em> statement follows an <em>if</em> block, and is composed of the keyword <em>else</em> followed by a colon. The body of the <em>else</em> statement is indented to the right, and will be expected if the above <em>if</em> statement doesn’t execute.</p><p id="49e63f76-78a6-4486-b9cf-dc0411c5e597" class="">We also touched on the modulo operator, which is represented by the percent sign: <strong>%</strong>. This operator performs integer division, but only returns the remainder of this division operation. If we’re dividing 5 by 2, the quotient is 2, and the remainder is 1. Two 2s can go into 5, leaving 1 left over. So 5%2 would return 1. Dividing 10 by 5 would give us a quotient of 2 with no remainder, since 5 can go into 10 twice with nothing left over. In this case, 10%2 would return 0, as there is no remainder.</p><p id="3e8ad5f0-85eb-4fcf-b94d-b67b96138dec" class="">Building off of the if and else blocks, which allow us to branch our code depending on the evaluation of one statement, the elif statement allows us even more comparisons to perform more complex branching. Very similar to the if statements, an elif statement starts with the elif keyword, followed by a comparison to be evaluated. This is followed by a colon, and then the code block on the next line, indented to the right. An elif statement must follow an if statement, and will only be evaluated if the if statement was evaluated as false. You can include multiple elif statements to build complex branching in your code to do all kinds of powerful things!</p><p id="372faf03-ce3c-4383-8d35-5aac24529cf9" class="">
+</p><p id="8292b735-a291-47e5-b9c5-485c660d56af" class="">
+</p><h2 id="570c2760-08c9-4074-91ba-16a1e114b4c2" class="">Conditionals Cheat Sheet</h2><hr id="ff50a8a3-4ef2-4162-9a61-de75e8091822"/><h2 id="1a86a5d2-c8cc-489a-8e4b-b18c720f449a" class="">Conditionals Cheat Sheet</h2><p id="8280262c-04fb-4f41-87fa-892baf8f915c" class="">In earlier videos, we took a look at some of the built-in Python operators that allow us to compare values, and some logical operators we can use to combine values. We also learned how to use operators in if-else-elif blocks.</p><p id="3cfdf08a-47fe-46db-b3fb-783db4f863c0" class="">It’s a lot to learn but, with practice, it gets easier to remember it all. In the meantime, this handy cheat sheet gives you all the information you need at a glance.</p><h3 id="74d36156-9797-41cc-b6cf-58af67b9d388" class="">Comparison operators</h3><ul id="f7ebc91b-8ea9-43cb-a19c-ec358b2c6e00" class="bulleted-list"><li>a == b: a is equal to b</li></ul><ul id="d1132dc4-770b-4692-8c68-349536576df6" class="bulleted-list"><li>a != b: a is different than b</li></ul><ul id="afd74c84-c43a-48f8-86f5-7199fcd92017" class="bulleted-list"><li>a &lt; b: a is smaller than b</li></ul><ul id="728ba2bc-7491-469e-b5a9-5ad97be70aa6" class="bulleted-list"><li>a &lt;= b: a is smaller or equal to b</li></ul><ul id="7f7bc784-e58c-4a57-8c7f-d58e0eb786c9" class="bulleted-list"><li>a &gt; b: a is bigger than b</li></ul><ul id="8cd85696-cfc1-4cc7-ac0e-8f7b47f0a0c9" class="bulleted-list"><li>a &gt;= b: a is bigger or equal to b</li></ul><h3 id="0a261966-b263-4171-b463-598391e991eb" class="">Logical operators</h3><ul id="ec5a4008-74b2-402a-8782-199812346811" class="bulleted-list"><li>a and b: True if both a and b are True. False otherwise.</li></ul><ul id="73aace93-9142-4ade-bf79-5a99042ed652" class="bulleted-list"><li>a or b: True if either a or b or both are True. False if both are False.</li></ul><ul id="0b8bf874-ad8a-4f6e-8333-615442023456" class="bulleted-list"><li>not a: True if a is False, False if a is True.</li></ul><p id="116cb333-1e85-4a48-9dd9-485f5fc74ac6" class=""><strong>Branching blocks</strong></p><p id="85ff0e5e-ddaf-4a2f-a544-349844c570a4" class="">In Python, we branch our code using if, else and elif. This is the branching syntax:</p><pre id="9c04a885-6499-4224-8e55-6a36e4c37626" class="code"><code>if condition1:
+	if-block
+elif condition2:
+	elif-block
+else:
+	else-block</code></pre><p id="4f3b4979-006a-4eb4-9d48-d760807cdaa9" class="">Remember: The if-block will be executed if condition1 is True. The elif-block will be executed if condition1 is False and condition2 is True. The else block will be executed when all the specified conditions are false</p><h1 id="e3aa1f9a-6db3-4e9a-aefe-d2a6953819b3" class="">Loops</h1><h2 id="d8431cf3-9e65-4cba-8448-a83c7bb402f7" class="">Anatomy of a While Loop</h2><hr id="adfb3562-f650-47ff-bd8d-8ab3ceb85f2a"/><p id="fda1b355-b557-4846-8776-ea2d8c586815" class="">A <em>while</em> loop will continuously execute code depending on the value of a condition. It begins with the keyword <em>while,</em> followed by a comparison to be evaluated, then a colon. On the next line is the code block to be executed, indented to the right. Similar to an <em>if</em> statement, the code in the body will only be executed if the comparison is evaluated to be true. What sets a <em>while</em> loop apart, however, is that this code block will keep executing as long as the evaluation statement is true. Once the statement is no longer true, the loop exits and the next line of code will be executed</p><h2 id="952a71e9-b5a7-4aee-a045-a7d5eb4f0246" class="">Common Pitfalls With Variable Initialization</h2><hr id="3013b9d2-4598-438d-8f54-5607f5f17f88"/><p id="68f746cc-475a-45d4-9485-ba0ff4c57a66" class="">You&#x27;ll want to watch out for a common mistake: forgetting to initialize variables. If you try to use a variable without first initializing it, you&#x27;ll run into a <strong>NameError</strong>. This is the Python interpreter catching the mistake and telling you that you’re using an undefined variable. The fix is pretty simple: initialize the variable by assigning the variable a value before you use it.</p><p id="22cae9ff-b6b6-49e7-8676-d00015ebc066" class="">Another common mistake to watch out for that can be a little trickier to spot is forgetting to initialize variables with the correct value. If you use a variable earlier in your code and then reuse it later in a loop without first setting the value to something you want, your code may wind up doing something you didn&#x27;t expect. Don&#x27;t forget to initialize your variables before using them!</p><p id="9be0c4d6-54b2-49f2-9143-91cc3906979f" class="">
+</p><h2 id="20d6eea5-27a3-4d01-97d4-33a7fac11a46" class="">Infinite loops and Code Blocks</h2><hr id="4a426e6a-f8a1-45cf-b19d-0e018c7697f5"/><p id="c7065d32-1a42-477a-8f88-b63caadf3eb4" class="">Another easy mistake that can happen when using loops is introducing an infinite loop. An infinite loop means the code block in the loop will continue to execute and never stop. This can happen when the condition being evaluated in a <em>while</em> loop doesn&#x27;t change. Pay close attention to your variables and what possible values they can take. Think about unexpected values, like zero.</p><p id="67dc8d59-e85c-4157-ba5e-9e852c2903dd" class="">In the Coursera code blocks, you may see an error message that reads &quot;Evaluation took more than 5 seconds to complete.&quot; This means that the code encountered an infinite loop, and it timed out after 5 seconds. You should take a closer look at the code and variables to spot where the infinite loop is.</p><p id="42e364c9-6a98-47b0-92af-0e7057399b1e" class="">
+</p><h2 id="747f6390-d432-40be-8a4e-cd1749855944" class="">For Loops Recap</h2><hr id="6d00d904-451e-492e-9835-f4476600366b"/><p id="32eab91a-aa12-40a7-9dc1-2ed23aabe178" class=""><em>For</em> loops allow you to iterate over a sequence of values. Let&#x27;s take the example from the beginning of the video:</p><p id="8ae9b73d-f6e4-4eaf-8700-b1a7a136f578" class="">for x in range(5):</p><p id="4353d656-06ec-4f67-9a2c-f89520c9a6a7" class="">print(x)</p><p id="966a585a-838e-4881-bdfa-ed1c04701d41" class="">Similar to <em>if</em> statements and <em>while</em> loops, <em>for</em> loops begin with the keyword <em><strong>for</strong></em> with a colon at the end of the line. Just like in function definitions, <em>while </em>loops and <em>if</em> statements, the body of the <em>for</em> loop begins on the next line and is indented to the right. But what about the stuff in between the <em>for</em> keyword and the colon? In our example, we’re using the <em>range()</em> function to create a sequence of numbers that our <em>for</em> loop can iterate over. In this case, our variable <strong>x</strong> points to the current element in the sequence as the <em>for</em> loop iterates over the sequence of numbers. Keep in mind that in Python and many programming languages, a range of numbers will start at 0, and the list of numbers generated will be one less than the provided value. So <em>range(5)</em> will generate a sequence of numbers from 0 to 4, for a total of 5 numbers.</p><p id="371d7309-ad6b-4172-923a-930d6ee1bfcb" class="">Bringing this all together, the range(5) function will create a sequence of numbers from 0 to 4. Our <em>for</em> loop will iterate over this sequence of numbers, one at a time, making the numbers accessible via the variable <strong>x</strong> and the code within our loop body will execute for each iteration through the sequence. So for the first loop, <strong>x</strong> will contain 0, the next loop, 1, and so on until it reaches 4. Once the end of the sequence comes up, the loop will exit and the code will continue.</p><p id="fbc40760-b317-4da8-b7e7-bfd82470c0c6" class="">The power of <em>for</em> loops comes from the fact that it can iterate over a sequence of any kind of data, not just a range of numbers. You can use <em>for</em> loops to iterate over a list of strings, such as usernames or lines in a file.</p><p id="2de84e67-ded8-4c7b-9243-a5e0aac40d4b" class="">Not sure whether to use a <em>for</em> loop or a <em>while</em> loop? Remember that a <em>while </em>loop is great for performing an action over and over until a condition has changed. A <em>for</em> loop works well when you want to iterate over a sequence of elements.</p><p id="76f9c5c7-f700-4ff1-a6c8-4c43f92ada47" class="">
+</p><p id="78c45f5c-fe20-440f-a678-b74df6171659" class="">
+</p><h2 id="ea998df7-5376-4e6a-a990-7bb84e31ff03" class="">A Closer Look at the Range() Function</h2><hr id="d806225b-febe-4bab-ab89-d9635ab8f62f"/><p id="4357f639-6966-41c0-815a-6627b89f087d" class="">Previously we had used the <em>range()</em> function by passing it a single parameter, and it generated a sequence of numbers from 0 to one less than we specified. But the <em>range()</em> function can do much more than that. We can pass in two parameters: the first specifying our starting point, the second specifying the end point. Don&#x27;t forget that the sequence generated won&#x27;t contain the last element; it will stop one before the parameter specified.</p><p id="425a2be7-3adf-4689-aaef-358837ddedac" class="">The <em>range()</em> function can take a third parameter, too. This third parameter lets you alter the size of each step. So instead of creating a sequence of numbers incremented by 1, you can generate a sequence of numbers that are incremented by 5.</p><p id="7cff7291-6548-401d-886e-cea4e116a6a8" class="">To quickly recap the <em>range()</em> function when passing one, two, or three parameters:</p><ul id="39626635-226e-42df-9cba-86e4480eb54e" class="bulleted-list"><li>One parameter will create a sequence, one-by-one, from zero to one less than the parameter.</li></ul><ul id="ae622b89-a655-4099-bf8e-699108fc43eb" class="bulleted-list"><li>Two parameters will create a sequence, one-by-one, from the first parameter to one less than the second parameter.</li></ul><ul id="05042895-f8f8-4a4a-98be-828d2324983c" class="bulleted-list"><li>Three parameters will create a sequence starting with the first parameter and stopping before the second parameter, but this time increasing each step by the third parameter.</li></ul><p id="38241e58-a36e-4702-8654-ab8c7ed6498c" class="">
+</p><hr id="e30e20c0-b4a9-41f8-8698-be4bc0e90937"/><h2 id="e360d45a-5062-42c6-8945-b70db5c47d0f" class="">Loops Cheat Sheet</h2><p id="21d87b19-9156-4385-8cc0-885ae4645d75" class="">Check out below for a run down of the syntax for while loops and for loops.</p><h3 id="24f60305-85b5-4f50-b299-91a92de15018" class="">While Loops</h3><p id="a7800cac-8d0c-45b6-b860-355ed9f1df48" class="">A while loop executes the body of the loop while the condition remains True.</p><p id="867a0709-3a39-49e8-8a52-5e3a13871383" class="">Syntax:</p><pre id="3af71c7a-6d96-438a-890c-2681b47d4e3e" class="code"><code>while condition:
+    body</code></pre><p id="d947b293-5127-4f19-ba10-121bfa2f3949" class="">Things to watch out for!</p><ul id="49e28c18-85bd-460a-9995-af3a1a68c2bb" class="bulleted-list"><li><strong>Failure to initialize variables. </strong>Make sure all the variables used in the loop’s condition are initialized before the loop.</li></ul><ul id="0e2af0fb-3343-4e4d-b829-f6bcbe472805" class="bulleted-list"><li><strong>Unintended infinite loops. </strong>Make sure that the body of the loop modifies the variables used in the condition, so that the loop will eventually end <strong>for all possible values of the variables.</strong></li></ul><p id="32620995-8270-4178-afb9-d085d9ef9ef7" class="">Typical use:</p><p id="ffe7627a-1331-44e4-8e90-dfa550a295dd" class="">While loops are mostly used when there’s an unknown number of operations to be performed, and a condition needs to be checked at each iteration.</p><h3 id="08f6c0df-48f0-446e-aa3f-0d12c69d3d7c" class="">For Loops</h3><p id="cb034b4a-2c8f-4361-a97e-de49166f116f" class="">A for loop iterates over a sequence of elements, executing the body of the loop for each element in the sequence.</p><p id="cc1e8e90-0a91-4666-8edd-f60457489061" class="">Syntax:</p><pre id="e690e8ed-17d1-4e9d-8e2c-25e2fa5627b6" class="code"><code>for variable in sequence
+    body</code></pre><p id="c537f69a-805d-4871-bd12-4216afd41782" class="">The range() function:</p><p id="3a577ee5-2604-4c4c-8217-917d1ef0b93d" class="">range() generates a sequence of integer numbers. It can take one, two, or three parameters:</p><ul id="0bc3a696-3e38-4404-8a11-7f1a4caf1668" class="bulleted-list"><li>range(n): 0, 1, 2, ... n-1</li></ul><ul id="e4135f76-8210-4cbf-ae43-517e70ce8b95" class="bulleted-list"><li>range(x,y): x, x+1, x+2, ... y-1</li></ul><ul id="30522e9d-d67c-4ba8-80a0-5f8963c029a2" class="bulleted-list"><li>range(p,q,r): p, p+r, p+2r, p+3r, ... q-1 (if it&#x27;s a valid increment)</li></ul><p id="88508a15-dca1-49a1-a95d-13df0535ed73" class=""><strong>Common pitfalls:</strong></p><ul id="a38d1897-4b9b-4dd6-8c51-b3da86fd6b13" class="bulleted-list"><li><strong>Forgetting that the upper limit of a range() isn’t included.</strong></li></ul><ul id="a22d25f7-bde4-4be3-be92-08d4bd301b94" class="bulleted-list"><li><strong>Iterating over non-sequences.</strong> Integer numbers aren’t iterable. Strings are iterable letter by letter, but that might not be what you want.</li></ul><p id="d8df8066-5db2-47aa-bfd0-269ce880822d" class="">Typical use:</p><p id="b78ef3e5-6ad0-4281-bba4-f5253a19ddf6" class="">For loops are mostly used when there&#x27;s a pre-defined sequence or range of numbers to iterate.</p><h3 id="c63b9bd9-cd3e-4e78-a5c4-0b712f61b7cc" class="">Break &amp; Continue</h3><p id="ffa010c8-c957-415a-849c-5e034bfb5d11" class="">You can interrupt both while and for loops using the break keyword. We normally do this to interrupt a cycle due to a separate condition.</p><p id="c73459e2-a66b-4a41-97b8-3dc85dc0e088" class="">You can use the continue keyword to skip the current iteration and continue with the next one. This is typically used to jump ahead when some of the elements of the sequence aren’t relevant</p><h1 id="d1ba763f-3734-4b85-b67a-d85cc3159f09" class="">Recursive function</h1><p id="934d5910-0a04-459f-b0bb-3bdf30956f2f" class="">
+</p><p id="2535772c-edd3-4f14-b38a-27a69e63e2f6" class="">A recursive function must include a recursive case and base case. The recursive case calls the function again, with a different value. The base case returns a value without calling the same function.</p><p id="21db574a-b2ec-4ae2-bd9f-e72caa77a198" class="">A recursive function will usually have this structure:</p><pre id="9fd372bd-97df-427a-b1c9-fdff0e01221e" class="code"><code>def recursive_function(parameters):
+    if base_case_condition(parameters):
+        return base_case_value
+    recursive_function(modified_parameters)</code></pre><p id="846f6944-e362-4abb-9d3a-13f224485ce2" class="">
+</p><p id="fe1ae707-0f41-4b29-ab32-babc0487ba14" class="">
+</p><h2 id="15e4d3c5-038e-4172-9ea4-ad3821c7d866" class="">String Indexing and Slicing</h2><hr id="53f8dafd-d7de-448a-bba6-9060a420bf97"/><p id="4990d564-bdf2-4ce0-855f-4c73f2b1ca88" class="">String indexing allows you to access individual characters in a string. You can do this by using square brackets and the location, or index, of the character you want to access. It&#x27;s important to remember that Python starts indexes at 0. So to access the first character in a string, you would use the index [0]. If you try to access an index that’s larger than the length of your string, you’ll get an <strong>IndexError</strong>. This is because you’re trying to access something that doesn&#x27;t exist! You can also access indexes from the end of the string going towards the start of the string by using negative values. The index [-1] would access the last character of the string, and the index [-2] would access the second-to-last character. </p><p id="b4d747ef-c798-429a-8fdd-3091b01878a6" class="">You can also access a portion of a string, called a slice or a substring. This allows you to access multiple characters of a string. You can do this by creating a range, using a colon as a separator between the start and end of the range, like [2:5]. This range is similar to the range() function we saw previously. It includes the first number, but goes to one less than the last number. You can also easily reference the start or end of the string by leaving one value blank. For example [:5] would give us all characters from the start to the fourth character in the string. We can also use [5:] to get the characters from the fourth character to the end of the string.</p><p id="03454531-6937-450d-bbee-d8381bb35d57" class="">
+</p><h2 id="60d5b011-7125-4654-a66f-26cdcc37438f" class="">Basic String Methods</h2><hr id="cb5e3f72-f390-4d89-8c7a-58aa48981849"/><p id="dcbb4690-6856-4568-9b68-c8b8c8eb741f" class="">In Python, strings are immutable. This means that they can&#x27;t be modified. So if we wanted to fix a typo in a string, we can&#x27;t simply modify the wrong character. We would have to create a new string with the typo corrected. We can also assign a new value to the variable holding our string.</p><p id="6effb2c7-3baf-4fb1-bbd2-cf35b12b56de" class="">If we aren&#x27;t sure what the index of our typo is, we can use the string method <em>index</em> to locate it and return the index. Let&#x27;s imagine we have the string <strong>&quot;lions tigers and bears&quot;</strong> in the variable <strong>animals</strong>. We can locate the index that contains the letter <strong>g</strong> using <em>animals.index(&quot;g&quot;)</em>, which will return the index; in this case 8. We can also use substrings to locate the index where the substring begins. <em>animals.index(&quot;bears&quot;)</em> would return 17, since that’s the start of the substring. If there’s more than one match for a substring, the index method will return the first match. If we try to locate a substring that doesn&#x27;t exist in the string, we’ll receive a <strong>ValueError</strong> explaining that the substring was not found.</p><p id="7529eb81-7330-4837-be67-4de2e37263ec" class="">We can avoid a ValueError by first checking if the substring exists in the string. This can be done using the <em><strong>in</strong></em> keyword. We saw this keyword earlier when we covered <em>for</em> loops. In this case, it&#x27;s a conditional that will be either True or False. If the substring is found in the string, it will be True. If the substring is not found in the string, it will be False. Using our previous variable <strong>animals</strong>, we can do <strong>&quot;horses&quot;</strong> <strong>in animals</strong> to check if the substring &quot;horses&quot; is found in our variable. In this case, it would evaluate to False, since horses aren’t included in our example string. If we did <strong>&quot;tigers&quot; in animals</strong>, we&#x27;d get True, since this substring is contained in our string.</p><p id="00c145fa-7930-4938-a867-5492e26e1773" class="">
+</p><h2 id="8c4c1326-9be9-4a5a-b61a-42a7dbe04b09" class="">Advanced String Methods</h2><hr id="f733ae4f-2fff-45c1-853d-dae9cbf44b70"/><p id="a752b06a-ff62-401e-a157-9928c4911581" class="">We&#x27;ve covered a bunch of String class methods already, so let&#x27;s keep building on those and run down some more advanced methods.The string method <strong>lower</strong> will return the string with all characters changed to lowercase. The inverse of this is the <strong>upper</strong> method, which will return the string all in uppercase. Just like with previous methods, we call these on a string using dot notation, like <strong>&quot;this is a string&quot;.upper()</strong>. This would return the string <strong>&quot;THIS IS A STRING&quot;</strong>. This can be super handy when checking user input, since someone might type in all lowercase, all uppercase, or even a mixture of cases.</p><p id="af2374ff-2c2c-4757-a83f-4fff0c2b214d" class="">You can use the <strong>strip</strong> method to remove surrounding whitespace from a string. Whitespace includes spaces, tabs, and newline characters. You can also use the methods <strong>lstrip</strong> and <strong>rstrip </strong>to remove whitespace only from the left or the right side of the string, respectively.</p><p id="a65445d5-15b5-4704-9134-1e55ee02747e" class="">The method <strong>count</strong> can be used to return the number of times a substring appears in a string. This can be handy for finding out how many characters appear in a string, or counting the number of times a certain word appears in a sentence or paragraph.</p><p id="d3283e6e-afb7-498f-8a39-8161af45d480" class="">If you wanted to check if a string ends with a given substring, you can use the method <strong>endswith</strong>. This will return True if the substring is found at the end of the string, and False if not.</p><p id="af5a6869-e658-4b11-9044-c1e5f5fbb3e5" class="">The <strong>isnumeric</strong> method can check if a string is composed of only numbers. If the string contains only numbers, this method will return True. We can use this to check if a string contains numbers before passing the string to the <strong>int()</strong> function to convert it to an integer, avoiding an error. Useful!</p><p id="b08c57bf-c668-4368-ac55-28acdde7cf84" class="">We took a look at string concatenation using the plus sign, earlier. We can also use the <strong>join</strong> method to concatenate strings. This method is called on a string that will be used to join a list of strings. The method takes a list of strings to be joined as a parameter, and returns a new string composed of each of the strings from our list joined using the initial string. For example, <strong>&quot; &quot;.join([&quot;This&quot;,&quot;is&quot;,&quot;a&quot;,&quot;sentence&quot;])</strong> would return the string <strong>&quot;This is a sentence&quot;</strong>.</p><p id="28170040-f116-45a2-b27d-8625dec5c9e7" class="">The inverse of the join method is the <strong>split</strong> method. This allows us to split a string into a list of strings. By default, it splits by any whitespace characters. You can also split by any other characters by passing a parameter.</p><p id="f9829126-3670-4887-8486-fd3d8f768876" class="">
+</p><h2 id="448757fb-fbab-4803-8425-babd6ef5c626" class="">String Formatting</h2><hr id="2f3929b0-9dde-4aab-a34f-e73cf820210d"/><p id="d582cba7-7dbe-4a06-8f44-0909389c3f05" class="">You can use the <strong>format</strong> method on strings to concatenate and format strings in all kinds of powerful ways. To do this, create a string containing curly brackets, <strong>{}</strong>, as a placeholder, to be replaced. Then call the format method on the string using <em>.format()</em> and pass variables as parameters. The variables passed to the method will then be used to replace the curly bracket placeholders. This method automatically handles any conversion between data types for us.</p><p id="db98baec-0d4e-4748-8be9-ccb735f52f7d" class="">If the curly brackets are empty, they’ll be populated with the variables passed in the order in which they&#x27;re passed. However, you can put certain expressions inside the curly brackets to do even more powerful string formatting operations. You can put the name of a variable into the curly brackets, then use the names in the parameters. This allows for more easily readable code, and for more flexibility with the order of variables.</p><p id="283f8344-98cd-4882-ab7e-9b46694e784d" class="">You can also put a formatting expression inside the curly brackets, which lets you alter the way the string is formatted. For example, the formatting expression <strong>{:.2f}</strong> means that you’d format this as a float number, with two digits after the decimal dot. The colon acts as a separator from the field name, if you had specified one. You can also specify text alignment using the greater than operator: <strong>&gt;</strong>. For example, the expression <strong>{:&gt;3.2f}</strong> would align the text three spaces to the right, as well as specify a float number with two decimal places. String formatting can be very handy for outputting easy-to-read textual output.</p><p id="d7ff9bca-5eb4-4e75-8025-295c6bac1b09" class="">
+</p><h2 id="1d21b9ea-5240-469a-9a1e-df76614c0737" class="">String Reference Cheat Sheet</h2><hr id="49a1db10-4990-4a77-9a62-6abb2e6b8cf6"/><h2 id="4ae06ec0-911c-4615-8a58-8d0d2d318886" class="">String Reference Cheat Sheet</h2><p id="4014e4e6-8398-44db-9163-1f233c48f4d3" class="">In Python, there are a lot of things you can do with strings. In this cheat sheet, you’ll find the most common string operations and string methods.</p><h3 id="1f54e71d-85a1-4a09-a7b7-dce4a383287d" class="">String operations</h3><ul id="8454a82f-b43c-4033-a3fe-e09d95bb19a0" class="bulleted-list"><li>len(string) Returns the length of the string</li></ul><ul id="c94e4c2a-8a3f-4148-b93b-c29ab5c1dc09" class="bulleted-list"><li>for character in string Iterates over each character in the string</li></ul><ul id="e1fa1a2e-40c7-4cce-83d6-403c1b081f26" class="bulleted-list"><li>if substring in string Checks whether the substring is part of the string</li></ul><ul id="aff06c58-ef48-4943-b417-9a6fbb9b6895" class="bulleted-list"><li>string[i] Accesses the character at index i of the string, starting at zero</li></ul><ul id="6c3706da-242b-4461-bd47-9cbc56a6131d" class="bulleted-list"><li>string[i:j] Accesses the substring starting at index i, ending at index j-1. If i is omitted, it&#x27;s 0 by default. If j is omitted, it&#x27;s len(string) by default.</li></ul><h3 id="49e69fa0-5479-46d1-9489-a465b1fb8a93" class="">String methods</h3><ul id="a5058cb2-df18-431e-9a89-e3135930aae6" class="bulleted-list"><li>string.lower() / string.upper() Returns a copy of the string with all lower / upper case characters</li></ul><ul id="b7eed8e9-8188-45c5-906a-3382441a1431" class="bulleted-list"><li>string.lstrip() / string.rstrip() / string.strip() Returns a copy of the string without left / right / left or right whitespace</li></ul><ul id="cfe6b5d1-e52b-40a2-b2d5-53246ffe1695" class="bulleted-list"><li>string.count(substring) Returns the number of times substring is present in the string</li></ul><ul id="7a220971-a1ad-4235-851a-652feff38437" class="bulleted-list"><li>string.isnumeric() Returns True if there are only numeric characters in the string. If not, returns False.</li></ul><ul id="569d162e-9ec8-49ad-a6e3-147a9bfc1c32" class="bulleted-list"><li>string.isalpha() Returns True if there are only alphabetic characters in the string. If not, returns False.</li></ul><ul id="d0444ebd-a4b8-4b62-a386-a30a21b2746f" class="bulleted-list"><li>string.split() / string.split(delimiter) Returns a list of substrings that were separated by whitespace / delimiter</li></ul><ul id="a7cdda10-831c-41b2-9c15-2f6168897bde" class="bulleted-list"><li>string.replace(old, new) Returns a new string where all occurrences of old have been replaced by new.</li></ul><ul id="c265788b-57e5-4367-9706-41cdacefcafa" class="bulleted-list"><li>delimiter.join(list of strings) Returns a new string with all the strings joined by the delimiter</li></ul><p id="2eef9a34-e7da-4b67-9dce-ff3f1f8f71c5" class="">
+</p><p id="ced3a73e-0e3f-49c1-96cb-252fb5484dd4" class="">
+</p><h2 id="b25476b9-e0fe-4361-88e3-ee5aaf01f04a" class="">Formatting Strings Cheat Sheet</h2><hr id="ee052b4f-9b8c-440f-838d-932c85e67c7e"/><h2 id="f4b44254-829a-4549-a749-7525969dbba8" class="">Formatting Strings Cheat Sheet</h2><p id="9ef95ab7-2f7c-4459-bc1c-59e4c3b179c8" class="">Python offers different ways to format strings. In the video, we explained the format() method. In this reading, we&#x27;ll highlight three different ways of formatting strings. For this course you only need to know the format() method. But on the internet, you might find any of the three, so it&#x27;s a good idea to know that the others exist.</p><h3 id="d97b2c95-b84b-4b1e-8086-63137e400d97" class="">Using the format() method</h3><p id="a1846000-6af6-413f-afff-d9b18ca1618e" class="">The format method returns a copy of the string where the {} placeholders have been replaced with the values of the variables. These variables are converted to strings if they weren&#x27;t strings already. Empty placeholders are replaced by the variables passed to format in the same order.</p><pre id="29151aff-3e32-49e8-8514-f35ad554448d" class="code"><code># &quot;base string with {} placeholders&quot;.format(variables)
+
+example = &quot;format() method&quot;
+
+formatted_string = &quot;this is an example of using the {} on a string&quot;.format(example)
+
+print(formatted_string)
+
+&quot;&quot;&quot;Outputs:
+this is an example of using the format() method on a string
+&quot;&quot;&quot;</code></pre><p id="d68e72f5-9754-412b-945e-5bdd7d41dc31" class="">If the placeholders indicate a number, they’re replaced by the variable corresponding to that order (starting at zero).</p><pre id="69972e6e-b9f7-4924-ba79-57a09f773781" class="code"><code># &quot;{0} {1}&quot;.format(first, second)
+
+first = &quot;apple&quot;
+second = &quot;banana&quot;
+third = &quot;carrot&quot;
+
+formatted_string = &quot;{0} {2} {1}&quot;.format(first, second, third)
+
+print(formatted_string)
+
+&quot;&quot;&quot;Outputs:
+apple carrot banana
+&quot;&quot;&quot;</code></pre><p id="1df13bc4-fa57-47df-94cb-663e057682a5" class="">If the placeholders indicate a field name, they’re replaced by the variable corresponding to that field name. This means that parameters to format need to be passed indicating the field name.</p><pre id="3227b5e3-c80a-4080-918a-ff4a55ac9989" class="code"><code># &quot;{var1} {var2}&quot;.format(var1=value1, var2=value2)</code></pre><pre id="2a43388f-bfdd-432c-b828-18b29175b67a" class="code"><code>&quot;{:exp1} {:exp2}&quot;.format(value1, value2)</code></pre><p id="744105e3-c2be-499b-9cde-cc6ba09caa60" class="">If the placeholders include a colon, what comes after the colon is a formatting expression. See below for the expression reference.</p><p id="4a5fa5c9-6464-467a-bf99-81feed10e0a3" class="">Official documentation for <a href="https://docs.python.org/3/library/string.html#formatstrings">the format string syntax</a></p><pre id="7143e1e5-0ca7-4403-bb56-4007619f208c" class="code"><code># {:d} integer value
+&#x27;{:d}&#x27;.format(10.5) → &#x27;10&#x27;</code></pre><div id="4b1eb082-edb1-4a79-9ce0-4a731f2cd02c" class="collection-content"><h4 class="collection-title">Formatting expressions</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Expr</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Meaning</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Example</th></tr></thead><tbody><tr id="c1126fec-916f-471b-9f35-5c4a2b5e7734"><td class="cell-title"><a href="https://www.notion.so/d-c1126fec916f471b9f355c4a2b5e7734">{:d}</a></td><td class="cell-[Pl|">integer value</td><td class="cell-Y|Ue">&#x27;{:d}&#x27;.format(10.5) → &#x27;10&#x27;</td></tr><tr id="a2774f27-1f87-4dca-abdd-9bc4a26b2dbf"><td class="cell-title"><a href="https://www.notion.so/2f-a2774f271f874dcaabdd9bc4a26b2dbf">{:.2f}</a></td><td class="cell-[Pl|">floating point with that many decimals</td><td class="cell-Y|Ue">&#x27;{:.2f}&#x27;.format(0.5) → &#x27;0.50&#x27;</td></tr><tr id="490063e0-ace1-4769-89b7-142c82a45888"><td class="cell-title"><a href="https://www.notion.so/2s-490063e0ace1476989b7142c82a45888">{:.2s}</a></td><td class="cell-[Pl|">string with that many characters</td><td class="cell-Y|Ue">&#x27;{:.2s}&#x27;.format(&#x27;Python&#x27;) → &#x27;Py&#x27;</td></tr><tr id="8fe2f8ed-5aa0-48ca-901d-fe4baf1881ae"><td class="cell-title"><a href="https://www.notion.so/6s-8fe2f8ed5aa048ca901dfe4baf1881ae">{:&lt;6s}</a></td><td class="cell-[Pl|">string aligned to the left that many spaces</td><td class="cell-Y|Ue">&#x27;{:&lt;6s}&#x27;.format(&#x27;Py&#x27;) → &#x27;Py    &#x27;</td></tr><tr id="72d8631a-ec51-4962-ab96-d212d4402c8d"><td class="cell-title"><a href="https://www.notion.so/6s-72d8631aec514962ab96d212d4402c8d">{:&gt;6s}</a></td><td class="cell-[Pl|">string aligned to the right that many spaces</td><td class="cell-Y|Ue">&#x27;{:&gt;6s}&#x27;.format(&#x27;Py&#x27;) → &#x27;    Py&#x27;</td></tr><tr id="7804ac93-26b4-432e-be7d-853d9ee609a9"><td class="cell-title"><a href="https://www.notion.so/6s-7804ac9326b4432ebe7d853d9ee609a9">{:^6s}</a></td><td class="cell-[Pl|">string centered in that many spaces</td><td class="cell-Y|Ue">&#x27;{:^6s}&#x27;.format(&#x27;Py&#x27;) → &#x27;  Py &#x27;</td></tr></tbody></table></div><p id="9b96287e-eba3-4683-b283-e14386389184" class="">Check out the official documentation for <a href="https://docs.python.org/3/library/string.html#format-specification-mini-language">all available expressions</a>.</p><h3 id="049f98f9-acf6-4a54-a302-90bd8ad2eae0" class="">Old string formatting (Optional)</h3><p id="6131d8a5-e0a4-4c88-a542-72a1592d7c79" class="">The format() method was introduced in Python 2.6. Before that, the % (modulo) operator could be used to get a similar result. While this method is <strong>no longer recommended</strong> for new code, you might come across it in someone else&#x27;s code. This is what it looks like:</p><p id="694e41fd-e2cb-42ec-86c9-77c7c539cbe3" class="">&quot;base string with %s placeholder&quot; % variable</p><p id="fbf96951-032a-4f26-a4cc-40dadbe1935a" class="">The % (modulo) operator returns a copy of the string where the placeholders indicated by % followed by a formatting expression are replaced by the variables after the operator.</p><p id="b4d7dbb9-48a3-4b61-8a35-58ef175381c2" class="">&quot;base string with %d and %d placeholders&quot; % (value1, value2)</p><p id="372d6960-6ecc-42a3-9a53-b658620a4740" class="">To replace more than one value, the values need to be written between parentheses. The formatting expression needs to match the value type.</p><p id="427c2b95-df6c-495f-88bd-fe08a264a12d" class="">&quot;%(var1) %(var2)&quot; % {var1:value1, var2:value2}</p><p id="97d6f575-0905-4fe2-b37b-a6108f9a8ce1" class="">Variables can be replaced by name using a dictionary syntax (we’ll learn about dictionaries in an upcoming video).</p><p id="bb523164-0db0-4cc5-a133-eecbbfd8dbe5" class="">&quot;Item: %s - Amount: %d - Price: %.2f&quot; % (item, amount, price)</p><p id="a8c785a1-d0a5-4d4f-9623-807e45360127" class="">The formatting expressions are mostly the same as those of the format() method.</p><p id="5e92c477-95ec-4cb0-b2d8-3b41d7aaaf7a" class="">Check out the official documentation for <a href="https://docs.python.org/3/library/stdtypes.html#old-string-formatting">old string formatting</a>.</p><h3 id="76344489-465d-4a24-b1db-a5538fe6135c" class="">Formatted string literals (Optional)</h3><p id="0d4eccc6-21d6-4974-8dc6-c8e48cf2ff04" class="">This feature was added in Python 3.6 and isn’t used a lot yet. Again, it&#x27;s included here in case you run into it in the future, but it&#x27;s not needed for this or any upcoming courses.</p><p id="fb2f0b09-25c3-4ee7-a1c6-41c5707e5b47" class="">A formatted string literal or f-string is a string that starts with &#x27;f&#x27; or &#x27;F&#x27; before the quotes. These strings might contain {} placeholders using expressions like the ones used for format method strings.</p><p id="5a3225e9-36d7-49f7-b999-5a24489d099e" class="">The important difference with the format method is that it takes the value of the variables from the current context, instead of taking the values from parameters.</p><p id="88e259cb-8f76-4dc6-add0-e99f2363348d" class="">Examples:</p><p id="699c676f-9dc4-453c-afc0-aa3e71434d4b" class="">&gt;&gt;&gt; name = &quot;Micah&quot;</p><p id="f2020975-b96a-48dd-afc3-d5d2967aff3c" class="">&gt;&gt;&gt; print(f&#x27;Hello {name}&#x27;)</p><p id="0b74c550-6e29-4ef4-8b28-e4b4afa6c2ad" class="">Hello Micah</p><p id="25b4706b-5fd9-42db-ba05-151c7fd57917" class="">&gt;&gt;&gt; item = &quot;Purple Cup&quot;</p><p id="5f135da8-0f40-4cba-b7ff-51df8f984b50" class="">&gt;&gt;&gt; amount = 5</p><p id="b4ff838b-17c5-440f-8db2-c425287dbabe" class="">&gt;&gt;&gt; price = amount * 3.25</p><p id="53299cba-8f7a-4435-8f5c-1df4be3857df" class="">&gt;&gt;&gt; print(f&#x27;Item: {item} - Amount: {amount} - Price: {price:.2f}&#x27;)</p><p id="620138c3-359d-442f-bd1c-74fbdad70cd7" class="">Item: Purple Cup - Amount: 5 - Price: 16.25</p><p id="770de9f3-b055-4f17-8063-42e0f58b7ba3" class="">
+</p><h2 id="1055ddbe-2112-4a36-897b-c0381b5b0b28" class="">Lists Defined</h2><hr id="dc561589-b087-432f-89b5-245d0d06469d"/><p id="52fb058e-810c-4f63-a2f7-4fe6c0c3b1e0" class="">Lists in Python are defined using square brackets, with the elements stored in the list separated by commas: <strong>list = [&quot;This&quot;, &quot;is&quot;, &quot;a&quot;, &quot;list&quot;]</strong>. You can use the <strong>len()</strong> function to return the number of elements in a list: <strong>len(list)</strong> would return <strong>4</strong>. You can also use the <strong>in</strong> keyword to check if a list contains a certain element. If the element is present, it will return a True boolean. If the element is not found in the list, it will return False. For example, <strong>&quot;This&quot; in list</strong> would return True in our example. Similar to strings, lists can also use indexing to access specific elements in a list based on their position. You can access the first element in a list by doing <strong>list[0]</strong>, which would allow you to access the string <strong>&quot;This&quot;</strong>.</p><p id="b7f75713-e3c0-45c6-88e4-f25bee6a8ea2" class="">In Python, lists and strings are quite similar. They’re both examples of sequences of data. Sequences have similar properties, like (1) being able to iterate over them using <strong>for loops</strong>; (2) support indexing; (3) using the <strong>len</strong> function to find the length of the sequence; (4) using the plus operator <strong>+</strong> in order to concatenate; and (5) using the <strong>in</strong> keyword to check if the sequence contains a value. Understanding these concepts allows you to apply them to other sequence types as wel</p><p id="2197ba13-4fe6-4f43-886c-634d70f32c20" class="">
+</p><h2 id="02001f6c-a1e1-4d34-a5af-80db35b47bb9" class="">Modifying Lists</h2><hr id="8c4f8fe5-0b7b-4f39-85f8-e9a44dfdf98e"/><p id="fd10e733-35f8-41c0-849d-6cd9ec963576" class="">While lists and strings are both sequences, a big difference between them is that lists are mutable. This means that the contents of the list can be changed, unlike strings, which are immutable. You can add, remove, or modify elements in a list.</p><p id="9b242fad-d065-43d5-b332-f8a3bd3c9d40" class="">You can add elements to the end of a list using the <strong>append</strong> method. You call this method on a list using dot notation, and pass in the element to be added as a parameter. For example, <strong>list.append(&quot;New data&quot;)</strong> would add the string &quot;New data&quot; to the end of the list called list.</p><p id="c5fe40ad-1361-490b-8c6e-157107bc3e1a" class="">If you want to add an element to a list in a specific position, you can use the method <strong>insert</strong>. The method takes two parameters: the first specifies the index in the list, and the second is the element to be added to the list. So <strong>list.insert(0, &quot;New data&quot;)</strong> would add the string &quot;New data&quot; to the front of the list. This wouldn&#x27;t overwrite the existing element at the start of the list. It would just shift all the other elements by one. If you specify an index that’s larger than the length of the list, the element will simply be added to the end of the list.</p><p id="0704e852-c3ee-4321-9b97-eaf6111e8435" class="">You can remove elements from the list using the <strong>remove</strong> method. This method takes an element as a parameter, and removes the first occurrence of the element. If the element isn’t found in the list, you’ll get a <strong>ValueError</strong> error explaining that the element was not found in the list.</p><p id="0ee24f50-bb2d-4ad5-96c3-f67733b3b3fd" class="">You can also remove elements from a list using the <strong>pop</strong> method. This method differs from the remove method in that it takes an index as a parameter, and returns the element that was removed. This can be useful if you don&#x27;t know what the value is, but you know where it’s located. This can also be useful when you need to access the data and also want to remove it from the list.</p><p id="a3b6b682-6c7a-4226-980f-44c3dd138733" class="">Finally, you can change an element in a list by using indexing to overwrite the value stored at the specified index. For example, you can enter <strong>list[0] = &quot;Old data&quot;</strong> to overwrite the first element in a list with the new string &quot;Old data&quot;</p><p id="c8b66aa9-28c5-4b2a-bed6-182081008b2c" class="">
+</p><p id="be6981b0-f67d-4929-88fc-b6442a5dacff" class="">
+</p><h2 id="5c95e6b7-897a-4e8a-9d45-8480db7c7b33" class="">Tuples</h2><hr id="1d07fd52-10a9-4d2b-804c-1519377ec2cc"/><p id="e1d33826-ad3b-44a5-af42-f72bdfa91409" class="">As we mentioned earlier, strings and lists are both examples of sequences. Strings are sequences of characters, and are immutable. Lists are sequences of elements of any data type, and are mutable. The third sequence type is the tuple. Tuples are like lists, since they can contain elements of any data type. But unlike lists, tuples are immutable. They’re specified using parentheses instead of square brackets.</p><p id="ce54de08-c3fc-4071-9342-24638fcfbcf4" class="">You might be wondering why tuples are a thing, given how similar they are to lists. Tuples can be useful when we need to ensure that an element is in a certain position and will not change. Since lists are mutable, the order of the elements can be changed on us. Since the order of the elements in a tuple can&#x27;t be changed, the position of the element in a tuple can have meaning. A good example of this is when a function returns multiple values. In this case, what gets returned is a tuple, with the return values as elements in the tuple. The order of the returned values is important, and a tuple ensures that the order isn’t going to change. Storing the elements of a tuple in separate variables is called unpacking. This allows you to take multiple returned values from a function and store each value in its own variable.</p><p id="f9f030d7-4420-4603-a3ea-af727894ab2b" class="">
+</p><p id="86adb6ca-0aa8-4e29-b696-6a966dddd17c" class="">
+</p><h2 id="1e1356d6-d812-4abd-90bd-598333c9c14d" class="">Iterating Over Lists Using Enumerate</h2><hr id="273a3f4f-3cf1-48fa-bfbd-9219df2ce656"/><p id="5366b720-33bf-41d6-9fd9-d959d24bbd68" class="">When we covered <em>for</em> loops, we showed the example of iterating over a list. This lets you iterate over each element in the list, exposing the element to the for loop as a variable. But what if you want to access the elements in a list, along with the index of the element in question? You can do this using the <strong>enumerate()</strong> function. The enumerate() function takes a list as a parameter and returns a tuple for each element in the list. The first value of the tuple is the index and the second value is the element itself.</p><p id="983fc130-3553-4b94-af1f-b890db80ae09" class="">
+</p><h2 id="a4bdd920-64ad-44a1-8a74-74c8f25eb300" class="">List Comprehensions</h2><hr id="e4b7de92-ece2-4099-87de-a8f6b9989095"/><p id="662eb06a-3354-4252-be9f-3ab8ba155676" class="">You can create lists from sequences using a for loop, but there’s a more streamlined way to do this: <strong>list comprehension</strong>. List comprehensions allow you to create a new list from a sequence or a range in a single line.</p><p id="fc8047c7-d5e2-43ce-84fd-4178cb47bded" class="">For example, <strong>[ x*2 for x in range(1,11) ]</strong> is a simple list comprehension. This would iterate over the range 1 to 10, and multiply each element in the range by 2. This would result in a list of the multiples of 2, from 2 to 20.</p><p id="0a4fc830-d69f-4bce-8298-5179d2d7b9ce" class="">You can also use conditionals with list comprehensions to build even more complex and powerful statements. You can do this by appending an if statement to the end of the comprehension. For example, <strong>[ x for x in range(1,101) if x % 10 == 0 ] </strong>would generate a list containing all the integers divisible by 10 from 1 to 100. The if statement we added here evaluates each value in the range from 1 to 100 to check if it’s evenly divisible by 10. If it is, it gets added to the list.</p><p id="4307f5cb-a930-467e-af88-a59b155b8d7d" class="">List comprehensions can be really powerful, but they can also be super complex, resulting in code that’s hard to read. Be careful when using them, since it might make it more difficult for someone else looking at your code to easily understand what the code is doing.</p><p id="e730a0da-780f-408f-9fc8-1391b8f9f58a" class="">
+</p><hr id="f59c15e3-d403-42ad-939b-328b07e749ed"/><h2 id="fc2b7711-439a-4d1a-94c2-bac7b0fd34e2" class="">Lists and Tuples Operations Cheat Sheet</h2><p id="6710a604-6379-475d-a900-d1de8f64bd8e" class="">Lists and tuples are both sequences, so they share a number of sequence operations. But, because lists are mutable, there are also a number of methods specific just to lists. This cheat sheet gives you a run down of the common operations first, and the list-specific operations second.</p><h3 id="c39977fa-fd1a-42a6-acd9-c57527974195" class="">Common sequence operations</h3><ul id="4f25c356-ceef-4e8a-82a0-281214c9fb98" class="bulleted-list"><li>len(sequence) Returns the length of the sequence</li></ul><ul id="7094979b-0a31-4efc-b958-d4da4f663ad5" class="bulleted-list"><li>for element in sequence Iterates over each element in the sequence</li></ul><ul id="516f1803-7873-421e-9dd3-9faf6923924a" class="bulleted-list"><li>if element in sequence Checks whether the element is part of the sequence</li></ul><ul id="69aeb346-970e-4cef-876a-622f8127ea21" class="bulleted-list"><li>sequence[i] Accesses the element at index i of the sequence, starting at zero</li></ul><ul id="0e8e6a20-c2b4-4083-8aac-7bcffc68e5b9" class="bulleted-list"><li>sequence[i:j] Accesses a slice starting at index i, ending at index j-1. If i is omitted, it&#x27;s 0 by default. If j is omitted, it&#x27;s len(sequence) by default.</li></ul><ul id="1961b8b9-9c77-4ca0-8eb8-2dd2539b1078" class="bulleted-list"><li>for index, element in enumerate(sequence) Iterates over both the indexes and the elements in the sequence at the same time</li></ul><p id="82a0fb3b-3e16-4d7c-928b-c3c4fc41f939" class="">Check out the <a href="https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range">official documentation for sequence operations</a>.</p><h3 id="fd052e23-9a70-48d9-8b5b-865052ec3e23" class="">List-specific operations and methods</h3><ul id="ae0bd4ed-8f7c-4219-aed7-9d60a6b4265a" class="bulleted-list"><li>list[i] = x Replaces the element at index i with x</li></ul><ul id="4675d738-cd62-4992-a507-85bf87683330" class="bulleted-list"><li>list.append(x) Inserts x at the end of the list</li></ul><ul id="49f235bd-df26-446f-b0e2-2ec059f5d92c" class="bulleted-list"><li>list.insert(i, x) Inserts x at index i</li></ul><ul id="e2da88f3-d8ee-4bee-add5-9ac6d4edfb9a" class="bulleted-list"><li>list.pop(i) Returns the element a index i, also removing it from the list. If i is omitted, the last element is returned and removed.</li></ul><ul id="81214e33-a0b2-4871-8af7-377918dafcc6" class="bulleted-list"><li>list.remove(x) Removes the first occurrence of x in the list</li></ul><ul id="22c99b2b-0bb0-4573-9a1f-f6ad3ea13e6a" class="bulleted-list"><li>list.sort() Sorts the items in the list</li></ul><ul id="ef8e45ca-86a2-4d67-ab59-ff1e027df427" class="bulleted-list"><li>list.reverse() Reverses the order of items of the list</li></ul><ul id="6e5f7668-f496-4fb5-9db0-a937087192b7" class="bulleted-list"><li>list.clear() Removes all the items of the list</li></ul><ul id="6590149d-d1c7-4db7-aede-9e638696b7c5" class="bulleted-list"><li>list.copy() Creates a copy of the list</li></ul><ul id="ec89bb40-b5a7-4856-932e-b1f5695e6a0f" class="bulleted-list"><li>list.extend(other_list) Appends all the elements of other_list at the end of list</li></ul><p id="4e628c22-67d1-44fe-9820-d0246f8211d9" class="">Most of these methods come from the fact that lists are mutable sequences. For more info, see the <a href="https://docs.python.org/3/library/stdtypes.html#mutable-sequence-types">official documentation for mutable sequences</a> and the <a href="https://docs.python.org/3/library/stdtypes.html#lists">list specific documentation</a>.</p><h3 id="4979de1c-76e1-4ec9-b5f5-7cadd6060124" class="">List comprehension</h3><ul id="f3072ed6-b731-4ee4-abaf-659b7732e101" class="bulleted-list"><li>[expression for variable in sequence] Creates a new list based on the given sequence. Each element is the result of the given expression.</li></ul><ul id="3b81ef25-c597-4b9c-8146-c4bd9eabba6d" class="bulleted-list"><li>[expression for variable in sequence if condition] Creates a new list based on the given sequence. Each element is the result of the given expression; elements only get added if the condition is true.</li></ul><p id="95ce24c2-501a-4a7a-b650-94b9e4b3af8b" class="">
+</p><h2 id="27516c2d-a4cf-495e-9ec7-0910e2690845" class="">Dictionaries Defined</h2><hr id="07e42af2-ddb1-454e-8929-9d0edbab73fc"/><p id="7eff78e1-538e-4b27-82ba-533d8021a26a" class="">Dictionaries are another data structure in Python. They’re similar to a list in that they can be used to organize data into collections. However, data in a dictionary isn&#x27;t accessed based on its position. Data in a dictionary is organized into pairs of keys and values. You use the key to access the corresponding value. Where a list index is always a number, a dictionary key can be a different data type, like a string, integer, float, or even tuples.</p><p id="71a3ba11-b6a1-4708-8064-cc30d78b0ad7" class="">When creating a dictionary, you use curly brackets: <strong>{}</strong>. When storing values in a dictionary, the key is specified first, followed by the corresponding value, separated by a colon. For example, <strong>animals = { &quot;bears&quot;:10, &quot;lions&quot;:1, &quot;tigers&quot;:2 }</strong> creates a dictionary with three key value pairs, stored in the variable animals. The key &quot;bears&quot; points to the integer value 10, while the key &quot;lions&quot; points to the integer value 1, and &quot;tigers&quot; points to the integer 2. You can access the values by referencing the key, like this: <strong>animals[&quot;bears&quot;]</strong>. This would return the integer 10, since that’s the corresponding value for this key.</p><p id="59ec3263-e821-4588-aa0d-72e296e976b7" class="">You can also check if a key is contained in a dictionary using the <strong>in</strong> keyword. Just like other uses of this keyword, it will return True if the key is found in the dictionary; otherwise it will return False.</p><p id="5e157af1-1b0b-41c0-b2b8-a4732e8a71fd" class="">Dictionaries are mutable, meaning they can be modified by adding, removing, and replacing elements in a dictionary, similar to lists. You can add a new key value pair to a dictionary by assigning a value to the key, like this: <strong>animals[&quot;zebras&quot;] = 2</strong>. This creates the new key in the animal dictionary called zebras, and stores the value 2. You can modify the value of an existing key by doing the same thing. So <strong>animals[&quot;bears&quot;] = 11</strong> would change the value stored in the bears key from 10 to 11. Lastly, you can remove elements from a dictionary by using the <strong>del </strong>keyword. By doing <strong>del animals[&quot;lions&quot;]</strong> you would remove the key value pair from the animals dictionary.</p><p id="0ffcb42c-0d15-43b3-8677-a3def841973f" class="">
+</p><h2 id="6079a8b6-a8f9-446e-a947-579c905f1188" class="">Iterating Over Dictionaries</h2><hr id="671f89a9-3331-4ba5-b09d-1ed4e7add5f7"/><p id="8c10f142-14db-4f09-8a5d-b5d73e5cf0c8" class="">You can iterate over dictionaries using a <em>for</em> loop, just like with strings, lists, and tuples. This will iterate over the sequence of keys in the dictionary. If you want to access the corresponding values associated with the keys, you could use the keys as indexes. Or you can use the <strong>items</strong> method on the dictionary, like <strong>dictionary.items()</strong>. This method returns a tuple for each element in the dictionary, where the first element in the tuple is the key and the second is the value.</p><p id="7512f455-f664-49f7-a617-f5350617f063" class="">If you only wanted to access the keys in a dictionary, you could use the <strong>keys()</strong> method on the dictionary: <strong>dictionary.keys()</strong>. If you only wanted the values, you could use the <strong>values() </strong>method: <strong>dictionary.values()</strong>.</p><hr id="1edd965b-89d7-4235-9faa-17bb0ca41b5b"/><h2 id="61da96dc-0d19-4e17-8978-4181f77bdfac" class="">Dictionary Methods Cheat Sheet</h2><p id="0623765a-360d-48d8-affc-2c56d8a0ea30" class=""><strong>Definition</strong></p><p id="f979aacf-dc23-4840-b639-04a05e385d8a" class="">x = {key1:value1, key2:value2}</p><p id="4357340a-e880-4ba7-98e0-0933a47f685c" class=""><strong>Operations</strong></p><ul id="7e7af581-e51c-46de-8c87-465191389662" class="bulleted-list"><li>len(dictionary) - Returns the number of items in the dictionary</li></ul><ul id="d6c8cbfd-ffbf-4a52-a634-f0ef187a9ea4" class="bulleted-list"><li>for key in dictionary - Iterates over each key in the dictionary</li></ul><ul id="900c2643-ed9b-476b-a13e-90d8184b8c99" class="bulleted-list"><li>for key, value in dictionary.items() - Iterates over each key,value pair in the dictionary</li></ul><ul id="3fb7ad73-cd92-48c5-973a-676eddfb3124" class="bulleted-list"><li>if key in dictionary - Checks whether the key is in the dictionary</li></ul><ul id="3fc760fb-ea57-4e4a-bbfa-88fe1345af52" class="bulleted-list"><li>dictionary[key] - Accesses the item with key key of the dictionary</li></ul><ul id="0d316d95-4fd5-4e00-874d-98f5b2a5d360" class="bulleted-list"><li>dictionary[key] = value - Sets the value associated with key</li></ul><ul id="5c84e1cc-e132-4c2b-a62e-a954e2f87623" class="bulleted-list"><li>del dictionary[key] - Removes the item with key key from the dictionary</li></ul><p id="5a7ca539-c749-4d1b-bab3-af6a7e878bc9" class=""><strong>Methods</strong></p><ul id="e4a7886c-79cb-477f-896b-0eb5a93dbe93" class="bulleted-list"><li>dict.get(key, default) - Returns the element corresponding to key, or default if it&#x27;s not present</li></ul><ul id="42b6ce8d-15c2-4e17-aeff-07dc995a46b3" class="bulleted-list"><li>dict.keys() - Returns a sequence containing the keys in the dictionary</li></ul><ul id="0fd0e859-2f0c-47b2-9788-60a50382189d" class="bulleted-list"><li>dict.values() - Returns a sequence containing the values in the dictionary</li></ul><ul id="50ab0076-e6c1-4444-b4bf-efb7c79b7b84" class="bulleted-list"><li>dict.update(other_dictionary) - Updates the dictionary with the items coming from the other dictionary. Existing entries will be replaced; new entries will be added.</li></ul><ul id="62339521-41d7-468f-a1f3-dfc16e33f5f5" class="bulleted-list"><li>dict.clear() - Removes all the items of the dictionary</li></ul><p id="f1d6ed2b-aff0-478a-91bd-175039ac5306" class="">Check out the <a href="https://docs.python.org/3/library/stdtypes.html#mapping-types-dict">official documentation for dictionary operations and methods</a>.</p><p id="c7cc5f61-ca89-4599-b440-20c2641a9564" class="">
+</p><p id="bf8eabcb-05f4-4c4b-a4d0-000b09d78e1e" class="">
+</p><h2 id="438a15af-f36d-4b57-835a-8468cf732977" class="">Object-Oriented Programming Defined</h2><hr id="326c8593-2e34-4e6d-ad22-6a1272921743"/><p id="613176aa-889e-44c2-b929-f83b6f5b158e" class="">In object-oriented programming, concepts are modeled as classes and objects. An idea is defined using a class, and an instance of this class is called an object. Almost everything in Python is an object, including strings, lists, dictionaries, and numbers. When we create a list in Python, we’re creating an object which is an instance of the list class, which represents the concept of a list. Classes also have attributes and methods associated with them. Attributes are the characteristics of the class, while methods are functions that are part of the class.</p><h2 id="c6e6d56d-5633-45e8-90bc-9320fe6f0adf" class="">Classes and Objects in Detail</h2><hr id="6e374c1d-85df-4494-a931-75eec04d5bfe"/><p id="b8ca1cc8-bcfd-49b7-ba55-1d0defe946dc" class="">We can use the <strong>type()</strong> function to figure out what class a variable or value belongs to. For example, <strong>type(&quot; &quot;)</strong> tells us that this is a string class. The only attribute in this case is the string value, but there are a bunch of methods associated with the class. We&#x27;ve seen the <strong>upper()</strong> method, which returns the string in all uppercase, as well as <strong>isnumeric()</strong> which returns a boolean telling us whether or not the string is a number. You can use the <strong>dir()</strong> function to print all the attributes and methods of an object. Each string is an instance of the string class, having the same methods of the parent class. Since the content of the string is different, the methods will return different values. You can also use the <strong>help()</strong> function on an object, which will return the documentation for the corresponding class. This will show all the methods for the class, along with parameters the methods receive, types of return values, and a description of the methods.</p><h2 id="a9994587-c508-43ae-bbc0-fc7adf3937a1" class="">Defining Classes</h2><hr id="5302718a-b6f9-4045-9363-e8b3114cf4de"/><p id="e5c47822-7a9c-4029-a524-e82b0bc8e34f" class="">We can create and define our classes in Python similar to how we define functions. We start with the <strong>class</strong> keyword, followed by the name of our class and a colon. Python style guidelines recommend class names to start with a capital letter. After the class definition line is the class body, indented to the right. Inside the class body, we can define attributes for the class.</p><p id="0e240027-5864-4239-8f5a-99b1a9e71885" class="">Let&#x27;s take our Apple class example:</p><pre id="957b5c5c-163a-4137-a68d-ab4bf62d4278" class="code"><code>class Apple:
+...     color = &quot;&quot;
+...     flavor = &quot;&quot;
+</code></pre><p id="e3fdb5f5-c630-4082-a6d2-1d3aeeea5b2d" class="">We can create a new instance of our new class by assigning it to a variable. This is done by calling the class name as if it were a function. We can set the attributes of our class instance by accessing them using dot notation. Dot notation can be used to set or retrieve object attributes, as well as call methods associated with the class.</p><pre id="4c660ff6-f078-4c84-a8e6-29d1671119ac" class="code"><code>
+&gt;&gt;&gt; jonagold = Apple()
+&gt;&gt;&gt; jonagold.color = &quot;red&quot;
+&gt;&gt;&gt; jonagold.flavor = &quot;sweet&quot;</code></pre><p id="d927a8d9-407e-4b41-a384-408b2b0e4d69" class="">We created an Apple instance called jonagold, and set the color and flavor attributes for this Apple object. We can create another instance of an Apple and set different attributes to differentiate between two different varieties of apples.</p><pre id="001221ef-7952-4bad-985a-01a00548e7df" class="code"><code>&gt;&gt;&gt; golden = Apple()
+&gt;&gt;&gt; golden.color = &quot;Yellow&quot;
+&gt;&gt;&gt; golden.flavor = &quot;Soft&quot;
+</code></pre><p id="ef0da263-7474-430c-a9ba-5b0edd66b7b2" class="">We now have another Apple object called golden that also has color and flavor attributes. But these attributes have different values.</p><h2 id="db5ed6dc-01d9-4252-88e6-1b00be602dbd" class="">What Is a Method?</h2><hr id="6893f70b-0962-4a2f-bbbe-47cca5a45476"/><p id="b9c0022a-1a2c-4b5b-ad0f-53f40fd09550" class="">Calling methods on objects executes functions that operate on attributes of a specific instance of the class. This means that calling a method on a list, for example, only modifies that instance of a list, and not all lists globally. We can define methods within a class by creating functions inside the class definition. These instance methods can take a parameter called <strong>self</strong> which represents the instance the method is being executed on. This will allow you to access attributes of the instance using dot notation, like <strong>self.name</strong>, which will access the name attribute of that specific instance of the class object. When you have variables that contain different values for different instances, these are called instance variables.</p><h2 id="aaf29168-8b72-44ea-890a-95e88cdf2b6b" class="">Special Methods</h2><hr id="e8fd854b-377d-4489-a634-5e8e38f7ef90"/><p id="02adaa16-e003-4898-98ac-76997dec2618" class="">Instead of creating classes with empty or default values, we can set these values when we create the instance. This ensures that we don&#x27;t miss an important value and avoids a lot of unnecessary lines of code. To do this, we use a special method called a <strong>constructor</strong>. Below is an example of an Apple class with a constructor method defined.</p><pre id="4450ecd0-d2c9-425d-bd22-632853fcf04d" class="code"><code>&gt;&gt;&gt; class Apple:
+...     def __init__(self, color, flavor):
+...         self.color = color
+...         self.flavor = flavor</code></pre><p id="ee4551db-1498-48da-9e9a-17ddc704e882" class="">When you call the name of a class, the constructor of that class is called. This constructor method is always named <strong>__init__</strong>. You might remember that special methods start and end with two underscore characters. In our example above, the constructor method takes the self variable, which represents the instance, as well as color and flavor parameters. These parameters are then used by the constructor method to set the values for the current instance. So we can now create a new instance of the Apple class and set the color and flavor values all in go:</p><pre id="30190133-6147-424d-a039-895ba74a04d6" class="code"><code>&gt;&gt;&gt; jonagold = Apple(&quot;red&quot;, &quot;sweet&quot;)
+&gt;&gt;&gt; print(jonagold.color)
+Red</code></pre><p id="83209778-858a-4930-8706-afe7140e9ac3" class="">In addition to the <strong>__init__ </strong>constructor special method, there is also the <strong>__str__</strong> special method. This method allows us to define how an instance of an object will be printed when it’s passed to the print() function. If an object doesn’t have this special method defined, it will wind up using the default representation, which will print the position of the object in memory. Not super useful. Here is our Apple class, with the <strong>__str__ </strong>method added:</p><pre id="ae1b988f-afde-4a9e-9a23-cbe0adf81a56" class="code"><code>&gt;&gt;&gt; class Apple:
+...     def __init__(self, color, flavor):
+...         self.color = color
+...         self.flavor = flavor
+...     def __str__(self):
+...         return &quot;This apple is {} and its flavor is {}&quot;.format(self.color, self.flavor)
+...</code></pre><p id="93a3a4af-643a-436b-a45a-a5ddb507ce79" class="">Now, when we pass an Apple object to the print function, we get a nice formatted string:</p><pre id="ba4b3d3e-d3bc-4d25-a7ff-7c6c0a16b968" class="code"><code>&gt;&gt;&gt; jonagold = Apple(&quot;red&quot;, &quot;sweet&quot;)
+&gt;&gt;&gt; print(jonagold)
+This apple is red and its flavor is sweet</code></pre><p id="cfe61cec-3c35-436d-9c59-feb3c3356c73" class="">This apple is red and its flavor is sweet</p><p id="ea08c052-79cd-4f96-b7f9-64d8c1cd730d" class="">It&#x27;s good practice to think about how your class might be used and to define a __str__ method when creating objects that you may want to print later.</p><p id="c4c041de-16c8-4b51-96bd-8fcd20603c3a" class="">
+</p><h2 id="bbe931a4-a367-402a-9e4c-8e9079fc8eb3" class="">Documenting with Docstrings</h2><hr id="fbe88694-df89-4bac-a850-7ca29dbd5b82"/><p id="e24d0ad3-a84b-441a-9f97-15a7864c13c2" class="">The Python <strong>help</strong> function can be super helpful for easily pulling up documentation for classes and methods. We can call the <strong>help</strong> function on one of our classes, which will return some basic info about the methods defined in our class:</p><pre id="db95d793-2a8d-4147-9ccf-4ada4b1a81ae" class="code"><code>&gt;&gt;&gt; class Apple:
+...     def __init__(self, color, flavor):
+...         self.color = color
+...         self.flavor = flavor
+...     def __str__(self):
+...         return &quot;This apple is {} and its flavor is {}&quot;.format(self.color, self.flavor)
+... 
+&gt;&gt;&gt; help(Apple)
+Help on class Apple in module __main__:
+
+class Apple(builtins.object)
+ |  Methods defined here:
+ |  
+ |  __init__(self, color, flavor)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  __str__(self)
+ |      Return str(self).
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)</code></pre><p id="35ae1701-ae0c-46f7-813f-dc6cbf9fe4ad" class="">
+</p><h2 id="e09fa164-5355-4238-a240-1bee84c7ed6d" class="">Classes and Methods Cheat Sheet (Optional)</h2><hr id="85be3526-bf8a-48ae-b9e5-d4dd974c508c"/><h2 id="5abaec92-f47e-4efd-98b0-04c018257ede" class="">Classes and Methods Cheat Sheet</h2><p id="4aa7c9fe-fe85-4377-8a10-42bf548aec8a" class="">In the past few videos, we’ve seen how to define classes and methods in Python. Here, you’ll find a run-down of everything we’ve covered, so you can refer to it whenever you need a refresher.</p><h3 id="9984985e-7197-48ba-a7f4-87192a5cbf8a" class="">Defining classes and methods</h3><pre id="66f65de0-bdc1-452e-b4fb-0790e12005ad" class="code"><code>class ClassName:
+    def method_name(self, other_parameters):
+        body_of_method</code></pre><h3 id="a25dbf30-a060-4a35-b3cc-2379639461e3" class="">Classes and Instances</h3><ul id="3c986295-f978-4716-9739-072edf1acf17" class="bulleted-list"><li>Classes define the behavior of all instances of a specific class.</li></ul><ul id="e9508534-0ba4-4d64-82c9-ce83d74ffe75" class="bulleted-list"><li>Each variable of a specific class is an instance or object.</li></ul><ul id="ae743ae3-4826-4e7a-8b25-b4664464f7e3" class="bulleted-list"><li>Objects can have attributes, which store information about the object.</li></ul><ul id="b6384c9b-a93a-4e27-9394-0e2c2fbc886d" class="bulleted-list"><li>You can make objects do work by calling their methods.</li></ul><ul id="a3beb95f-1d2e-4743-b23e-25677be03432" class="bulleted-list"><li>The first parameter of the methods (self) represents the current instance.</li></ul><ul id="53217d83-992a-4b23-87d8-edeae2fa84af" class="bulleted-list"><li>Methods are just like functions, but they can only be used through a class.</li></ul><h3 id="daa0b39c-0fe8-441c-8be4-f1c67842fae9" class="">Special methods</h3><ul id="64989bd8-89c8-4a52-8c2c-2ec131e1e166" class="bulleted-list"><li>Special methods start and end with __.</li></ul><ul id="fd682003-2761-445a-b126-0b6b7cb8da24" class="bulleted-list"><li>Special methods have specific names, like __init__ for the constructor or __str__ for the conversion to string.</li></ul><h3 id="c39e7cc7-c850-468b-a201-e30b2865099e" class="">Documenting classes, methods and functions</h3><ul id="8e49dff2-0d34-4a62-b109-8c925bc0d4a8" class="bulleted-list"><li>You can add documentation to classes, methods, and functions by using docstrings right after the definition. Like this:</li></ul><pre id="07a87406-7e7a-4e19-9113-da230b8b383f" class="code"><code>class ClassName:
+    &quot;&quot;&quot;Documentation for the class.&quot;&quot;&quot;
+    def method_name(self, other_parameters):
+        &quot;&quot;&quot;Documentation for the method.&quot;&quot;&quot;
+        body_of_method
+        
+def function_name(parameters):
+    &quot;&quot;&quot;Documentation for the function.&quot;&quot;&quot;
+    body_of_function</code></pre><p id="6297e261-8f6a-452d-a126-acd69bcf1b96" class="">
+</p><h2 id="179a07c5-cd05-447f-9e29-a49e835046a9" class="">Object Composition</h2><hr id="ee62c80f-8704-4f34-b86e-d0a89cb854f9"/><p id="465006cd-555a-412e-95b9-35597239408f" class="">You can have a situation where two different classes are related, but there is no inheritance going on. This is referred to as <strong>composition</strong> -- where one class makes use of code contained in another class. For example, imagine we have a <strong>Package</strong> class which represents a software package. It contains attributes about the software package, like name, version, and size. We also have a <strong>Repository</strong> class which represents all the packages available for installation. While there’s no inheritance relationship between the two classes, they are related. The Repository class will contain a dictionary or list of Packages that are contained in the repository. Let&#x27;s take a look at an example Repository class definition:</p><pre id="dbe4028e-2409-4ab8-b142-03b1456dfbd4" class="code"><code>&gt;&gt;&gt; class Repository:
+...      def __init__(self):
+...          self.packages = {}
+...      def add_package(self, package):
+...          self.packages[package.name] = package
+...      def total_size(self):
+...          result = 0
+...          for package in self.packages.values():
+...              result += package.size
+...          return result</code></pre><p id="74ba1da9-6b99-4834-b46e-623806ba41e3" class="">In the constructor method, we initialize the packages dictionary, which will contain the package objects available in this repository instance. We initialize the dictionary in the constructor to ensure that every instance of the Repository class has its own dictionary.</p><p id="67f62a70-a99b-4141-ac46-52177bc13437" class="">We then define the add_package method, which takes a Package object as a parameter, and then adds it to our dictionary, using the package name attribute as the key.</p><p id="52e4baf9-a19e-43c2-a7ec-f1f07cb7c358" class="">Finally, we define a total_size method which computes the total size of all packages contained in our repository. This method iterates through the values in our repository dictionary and adds together the size attributes from each package object contained in the dictionary, returning the total at the end. In this example, we’re making use of Package attributes within our Repository class. We’re also calling the values() method on our packages dictionary instance. Composition allows us to use objects as attributes, as well as access all their attributes and methods.</p><h2 id="12cbb555-fdcc-40de-a0d5-129605918a7d" class="">Augmenting Python with Modules</h2><hr id="a4a6ac84-298a-4e66-8fce-0a530667357d"/><p id="b41baae7-ef56-4615-8c09-bd347859364c" class="">Python modules are separate files that contain classes, functions, and other data that allow us to import and make use of these methods and classes in our own code. Python comes with a lot of modules out of the box. These modules are referred to as the Python Standard Library. You can make use of these modules by using the <strong>import</strong> keyword, followed by the module name. For example, we&#x27;ll import the <strong>random</strong> module, and then call the <strong>randint</strong> function within this module:</p><pre id="7c756700-4c54-42e6-b76c-823663337085" class="code"><code>&gt;&gt;&gt; import random
+&gt;&gt;&gt; random.randint(1,10)
+8
+&gt;&gt;&gt; random.randint(1,10)
+7
+&gt;&gt;&gt; random.randint(1,10)
+1</code></pre><p id="0ab747cf-d16e-4275-9ca9-e4d0678d3298" class="">This function takes two integer parameters and returns a random integer between the values we pass it; in this case, 1 and 10. You might notice that calling functions in a module is very similar to calling methods in a class. We use dot notation here too, with a period between the module and function names.</p><p id="da815f09-68e2-436b-b440-e305c854825e" class="">Let&#x27;s take a look at another module: <strong>datetime</strong>. This module is super helpful when working with dates and times.</p><pre id="a9ec29aa-2628-409b-9bf6-83f5c6ab6635" class="code"><code>&gt;&gt;&gt; import datetime
+&gt;&gt;&gt; now = datetime.datetime.now()
+&gt;&gt;&gt; type(now)
+&lt;class &#x27;datetime.datetime&#x27;&gt;
+&gt;&gt;&gt; print(now)
+2019-04-24 16:54:55.155199</code></pre><p id="3bae7a8e-e725-4f3d-a5ce-cb4fe8d26272" class="">First, we import the module. Next, we call the <strong>now()</strong> method which belongs to the <strong>datetime</strong> class contained within the <strong>datetime</strong> module. This method generates an instance of the datetime class for the current date and time. This instance has some methods which we can call:</p><pre id="6fb37f43-d3e1-4e16-bb38-3cce18082b3e" class="code"><code>&gt;&gt;&gt; print(now)
+2019-04-24 16:54:55.155199
+&gt;&gt;&gt; now.year
+2019
+&gt;&gt;&gt; print(now + datetime.timedelta(days=28))
+2019-05-22 16:54:55.155199</code></pre><p id="69b50c98-5435-4cd0-95b5-a5a2ac7565d7" class="">When we call the print function with an instance of the datetime class, we get the date and time printed in a specific format. This is because the datetime class has a <strong>__str__</strong> method defined which generates the formatted string we see here. We can also directly call attributes and methods of the class, as with <strong>now.year</strong> which returns the year attribute of the instance.</p><p id="efbc6769-6bb0-4271-a051-25e62d4868fe" class="">Lastly, we can access other classes contained in the datetime module, like the <strong>timedelta</strong> class. In this example, we’re creating an instance of the timedelta class with the parameter of 28 days. We’re then adding this object to our instance of the datetime class from earlier and printing the result. This has the effect of adding 28 days to our original datetime object.</p><p id="580e4881-0e8e-449e-886f-a2e4017e81e1" class="">The official Python documentation lists all the modules included in the standard library. It even has a turtle in it...</p><p id="a0b01d83-ee0e-4e79-8975-efda652e7c95" class=""><a href="https://pypi.org/">Pypi</a> is the Python repository and index of an impressive number of modules developed by Python programmers around the world.</p><p id="2e092bcf-af01-4abb-bf68-02ed50a92f72" class="">
+</p><p id="1d132a91-9913-4379-a36e-60b563fbf151" class="">
+</p><h2 id="e823e613-b11e-42fd-8d1f-1fc6134ea6af" class="">Final Project Help</h2><hr id="86c33a57-ff00-4871-a5a5-93547a6cc71b"/><h3 id="4db356e3-69c4-49bf-acb7-be25cc7dbacc" class="">Project goal</h3><p id="5d8a63de-6199-47dd-9f9e-36a0fb4c352d" class="">Create a dictionary with words and word frequencies that can be passed to the generate_from_frequencies function of the WordCloud class.</p><p id="d8558dcd-62dd-41f8-9c5d-66a3bb6fe0e2" class="">Once you have the dictionary, use this code to generate the word cloud image:</p><pre id="47db4aaf-9826-4002-ad15-74fa26b8d4bb" class="code"><code>2
+3
+1
+cloud.generate_from_frequencies(frequencies)
+cloud.to_file(&quot;myfile.jpg&quot;)
+cloud = wordcloud.WordCloud()
+
+</code></pre><h3 id="092bb3af-67a8-45e8-b6ba-7082a38743b0" class="">Things to remember</h3><ul id="f8beccdb-cd27-4c21-a4ec-a0f2b0bf9e58" class="bulleted-list"><li>Before processing any text, you need to remove all the punctuation marks. To do this, you can go through each line of text, character-by-character, using the <strong>isalpha()</strong> method. This will check whether or not the character is a letter.</li></ul><ul id="2bae55f2-d608-4125-9904-16ce673db553" class="bulleted-list"><li>To split a line of text into words, you can use the <strong>split()</strong> method.</li></ul><ul id="2486a355-0f92-4de7-9d70-d47a2c68f3b6" class="bulleted-list"><li>Before storing words in the frequency dictionary, check if they’re part of the &quot;uninteresting&quot; set of words (for example: &quot;a&quot;, &quot;the&quot;, &quot;to&quot;, &quot;if&quot;). Make this set a parameter to your function so that you can change it if necessary.</li></ul><h3 id="62b31652-082c-45c4-bf31-edcd84f76705" class="">Input file</h3><p id="fa023f84-ae04-4193-8474-5c698b5591ed" class="">For the input file, you need to provide a file that contains text only. For the text itself, you can copy and paste the contents of a website you like. Or you can use a site like <a href="https://www.gutenberg.org/">Project Gutenberg</a> to find books that are available online. You could see what word clouds you can get from famous books, like a Shakespeare play or a novel by Jane Austen.</p><h3 id="a6a361ad-b659-428e-af59-e82175b0037a" class="">Jupyter Notebooks Help</h3><p id="95334939-0a06-4ee7-8a41-d1bed8b8ceff" class="">Remember that if you need help with Jupyter Notebooks, you can check out <a href="https://learner.coursera.help/hc/en-us/articles/360004995312-Solve-problems-with-Jupyter-Notebooks">this help page</a>.</p><p id="284af0db-edee-4bd0-8e27-e4769f558827" class="">
+</p><h1 id="7dcdc4bf-e60b-41c1-b10a-1dadbebaa9cd" class=""><strong>Using Python to Interact with the Operating System </strong></h1><h2 id="cdaec3a7-c9fb-44a4-a865-8f7e70a68cab" class=""><strong>Reading and Writing Files</strong></h2><h3 id="f8600c6d-9f6a-4009-b13b-52f35a912247" class=""><strong>Programming with Files</strong></h3><p id="79b1e606-4fd7-4e36-baa4-ce34a6b955ef" class="">File systems are usually organized in a <strong>tree structure</strong> with directories and files nested under their parents.</p><ul id="23a25102-fbbf-48b1-81cb-8b142372a667" class="bulleted-list"><li>A relative paths use only a portion of a path to show where the resource is located in relation to the current working directory.</li></ul><ul id="709a18f5-226f-4998-b644-ebd4632110fc" class="bulleted-list"><li>An absolute path is a full path to the resource in the file system.</li></ul><h3 id="73ec6105-42d0-44e2-b843-becef09c40eb" class=""><strong>Reading Files</strong></h3><p id="633448d7-50fe-402f-b162-9229fac26e15" class="">When processing large chunks of data, it&#x27;s a good idea to read that data from files.</p><ul id="a69a87f6-20d2-4a3b-bd0f-8d5ef50d464d" class="bulleted-list"><li><strong>readline method</strong> reads a single line of a file and updates the current position in the file.</li></ul><ul id="6038b14f-f845-4c04-a13c-1fa3c993f3af" class="bulleted-list"><li><strong>read method</strong> reads from the current position until the end of the file instead of just one line.</li></ul><p id="2f82b61e-511b-4edc-b0c6-4602d1afc68b" class="">The <em>open-use-close pattern</em> is a typical way of working with files in most programming languages. It&#x27;s a good idea to close files after you&#x27;ve opened them for a few reasons.</p><ol id="4f755018-22de-4b59-867a-7bde99e23cc1" class="numbered-list" start="1"><li>When a file is opening a script, the file system usually lock it down and so no other programs or scripts can use it until it is closed.</li></ol><ol id="51a4512c-3ba1-4a34-90bc-d9c27b6a6715" class="numbered-list" start="2"><li>There&#x27;s a limited number of file descriptors that can be creates before file system runs out of them.</li></ol><ol id="fcd283cc-733d-4c33-9830-185a51276087" class="numbered-list" start="3"><li>Leaving open files hanging around can lead to race conditions which occur when multiple processes try to modify and read from one resource at the same time and can cause unexpected behavior.</li></ol><p id="e81b8b4b-5845-4d50-b2bd-ad648c35a90f" class="">In Python, <strong>file descriptor</strong> is stored as an <strong>attribute</strong> of the files object. This is a token generated by the OS that allows programs to do more operations with the file.</p><p id="0ba99d1f-6be5-4ff1-852f-df6e7fbfccc3" class="">the &quot;with&quot; keyword creates a block of code with the code to be excuted inside of it. When we use a &quot;with&quot; block, <strong>Python will automatically close the file</strong></p><p id="8dd20469-dcf8-4106-b17c-d6069b571523" class="">The open-use-close approach vs. the &quot;with&quot; approach</p><ul id="9e7413cc-423f-4149-add2-f0e34e85b66f" class="bulleted-list"><li>Using a &quot;with&quot; block is a good way to open and work on a single file then have the file automatically closed at the end of the block.</li></ul><ul id="823ecef2-e575-4145-932e-9cab6f733478" class="bulleted-list"><li>Using open outside of a block means we can use a file object in other places in our code. So we&#x27;re not restricted to just one single block. But when taking this approach, we need to remember to close it when we&#x27;re finished.</li></ul><h3 id="edb86c12-146b-4494-a0b1-6af1f1e8811e" class=""><strong>Iterating through Files</strong></h3><p id="936aeb0e-8f23-490a-87aa-7c043b00cf33" class="">There are 2 ways to iterate a file object:</p><ol id="9ba8208f-e0b8-44b8-8793-dbdedd9728ee" class="numbered-list" start="1"><li>Iterate the file object like list or strings</li></ol><ol id="b8ce691e-39d3-404a-9ecc-cf783f2546f3" class="numbered-list" start="2"><li>Iterates the file object by reading the file lines into a list<ul id="4670b308-f607-4f52-ba37-7ab0130134e2" class="bulleted-list"><li>When Python reads the file line by line, the line variable will always have a new line character at the end</li></ul></li></ol><p id="a85f177c-3e20-470e-b793-7251b3f0f604" class="">The file has a new line character at the end of each line.</p><ul id="28f47739-de51-4ea4-9ac6-b917c2228d5e" class="bulleted-list"><li>Empty lines can be avoided by using strip method.</li></ul><p id="039f84fd-2dbf-463a-bb85-2fa8ee9d0f99" class="">Python uses backlashes to display some of special symbols or operations:</p><ul id="534c9c8b-74b6-4e2c-a927-4b17fd6ecfc5" class="bulleted-list"><li>A newline character is displayed using &quot;\n&quot; symbol when printing a list of strings.</li></ul><ul id="33d2004a-ea22-47c2-97d6-dee49a345124" class="bulleted-list"><li>&#x27;tab&#x27; is displayed using \t.</li></ul><ul id="33d51c1d-3349-4f61-8b34-25b564b32234" class="bulleted-list"><li>A single or double quote can be displayed using backlashes as well.</li></ul><p id="a6872a44-0677-4507-b5b1-96ce647a56b4" class="">Be careful when reading the entire contents of a file into a variable of our programs: If the file is large, it can take a lot of computer&#x27;s memory to hold it, which can lead to poor performance. If a file is just a few kilobytes, it&#x27;s more efficient to process it line by line.</p><h3 id="88d9eae8-2b17-4198-bb86-f28aebe6a089" class=""><strong>Writing Files</strong></h3><p id="457456b3-bb5c-4fff-9d8e-600ca9ca0585" class="">File objects can be opened in several different modes. A mode is similar to a file permission. It governs what can be done with the file.</p><div id="33708ae1-fe17-4fba-8a17-21b0d51cc3b4" class="collection-content"><h4 class="collection-title">writing file</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Character</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Meaning</th></tr></thead><tbody><tr id="a038cd91-0cda-4780-b0dd-64be59ad392b"><td class="cell-title"><a href="https://www.notion.so/r-a038cd910cda4780b0dd64be59ad392b">r</a></td><td class="cell-uaD{">open for reading (default)</td></tr><tr id="02eb8463-0bde-460d-b5bc-7a97f6acac2d"><td class="cell-title"><a href="https://www.notion.so/w-02eb84630bde460db5bc7a97f6acac2d">w</a></td><td class="cell-uaD{">open for writing, truncating the file first</td></tr><tr id="90972575-3fc9-4e58-9c4d-b61346ac39b0"><td class="cell-title"><a href="https://www.notion.so/x-909725753fc94e589c4db61346ac39b0">x</a></td><td class="cell-uaD{">open for exclusive creation, failing if the file already exists</td></tr><tr id="a8e329f4-a43c-4535-998b-b9627e5a07ad"><td class="cell-title"><a href="https://www.notion.so/a-a8e329f4a43c4535998bb9627e5a07ad">a</a></td><td class="cell-uaD{">open for writing, appending to the end of the file if it exists</td></tr><tr id="ad9cc730-5342-4e07-8f35-22a4a94b59f3"><td class="cell-title"><a href="https://www.notion.so/b-ad9cc73053424e078f3522a4a94b59f3">b</a></td><td class="cell-uaD{">binary mode</td></tr><tr id="a41c6a99-7e39-4ac7-83d6-98f31ca185be"><td class="cell-title"><a href="https://www.notion.so/t-a41c6a997e394ac783d698f31ca185be">t</a></td><td class="cell-uaD{">text mode (default)</td></tr><tr id="95cc86e2-3c1c-4732-ae52-312f0b0e59a0"><td class="cell-title"><a href="https://www.notion.so/95cc86e23c1c4732ae52312f0b0e59a0">+</a></td><td class="cell-uaD{">open for updating (reading and writing)</td></tr></tbody></table></div><hr id="f6b14300-f198-4375-a185-6515ec8d6c8e"/><h1 id="38116380-4a5f-4deb-87ce-e295907d8040" class="">Array</h1><p id="4071efda-bacb-4d5a-a9a9-6663e5c701b0" class="">class array(builtins.object)
+| array(typecode [, initializer]) -&gt; array
+|
+| Return a new array whose items are restricted by typecode, and
+| initialized from the optional initializer value, which must be a list,
+| string or iterable over elements of the appropriate type.
+|
+| Arrays represent basic values and behave very much like lists, except
+| the type of objects stored in them is constrained. The type is specified
+| at object creation time by using a type code, which is a single character.
+| The following type codes are defined:
+|
+| Type code C Type Minimum size in bytes
+| &#x27;b&#x27; signed integer 1
+| &#x27;B&#x27; unsigned integer 1
+| &#x27;u&#x27; Unicode character 2 (see note)
+| &#x27;h&#x27; signed integer 2
+| &#x27;H&#x27; unsigned integer 2
+| &#x27;i&#x27; signed integer 2
+| &#x27;I&#x27; unsigned integer 2
+| &#x27;l&#x27; signed integer 4
+| &#x27;L&#x27; unsigned integer 4
+| &#x27;q&#x27; signed integer 8 (see note)
+| &#x27;Q&#x27; unsigned integer 8 (see note)
+| &#x27;f&#x27; floating point 4
+| &#x27;d&#x27; floating point 8
+|
+| NOTE: The &#x27;u&#x27; typecode corresponds to Python&#x27;s unicode character. On
+| narrow builds this is 2-bytes on wide builds this is 4-bytes.
+|
+| NOTE: The &#x27;q&#x27; and &#x27;Q&#x27; type codes are only available if the platform
+| C compiler used to build Python supports &#x27;long long&#x27;, or, on Windows,
+| &#x27;__int64&#x27;.
+|
+| Methods:
+|
+| append() -- append a new item to the end of the array
+| buffer_info() -- return information giving the current memory info
+| byteswap() -- byteswap all the items of the array
+| count() -- return number of occurrences of an object
+| extend() -- extend array by appending multiple elements from an iterable
+| fromfile() -- read items from a file object
+| fromlist() -- append items from the list
+| frombytes() -- append items from the string
+| index() -- return index of first occurrence of an object
+| insert() -- insert a new item into the array at a provided position
+| pop() -- remove and return item (default last)
+| remove() -- remove first occurrence of an object
+| reverse() -- reverse the order of the items in the array
+| tofile() -- write all items to a file object
+| tolist() -- return the array converted to an ordinary list
+| tobytes() -- return the array converted to a string
+|
+| Attributes:
+|
+| typecode -- the typecode character used to create the array
+| itemsize -- the length in bytes of one array item
+|
+| Methods defined here:
+|
+| <strong>add</strong>(self, value, /)
+| Return self+value.
+|
+| <strong>contains</strong>(self, key, /)
+| Return key in self.
+|
+| <strong>copy</strong>(self, /)
+| Return a copy of the array.
+|
+| <strong>deepcopy</strong>(self, unused, /)
+| Return a copy of the array.
+|
+| <strong>delitem</strong>(self, key, /)
+| Delete self[key].
+|
+| <strong>eq</strong>(self, value, /)
+| Return self==value.
+|
+| <strong>ge</strong>(self, value, /)
+| Return self&gt;=value.
+|
+| <strong>getattribute</strong>(self, name, /)
+| Return getattr(self, name).
+|
+| <strong>getitem</strong>(self, key, /)
+| Return self[key].
+|
+| <strong>gt</strong>(self, value, /)
+| Return self&gt;value.
+|
+| <strong>iadd</strong>(self, value, /)
+| Implement self+=value.
+|
+| <strong>imul</strong>(self, value, /)
+| Implement self*=value.
+|
+| <strong>iter</strong>(self, /)
+| Implement iter(self).
+|
+| <strong>le</strong>(self, value, /)
+| Return self&lt;=value.
+|
+| <strong>len</strong>(self, /)
+| Return len(self).
+|
+| <strong>lt</strong>(self, value, /)
+| Return self&lt;value.
+|
+| <strong>mul</strong>(self, value, /)
+| Return self<em>value.
+|</em><em>
+| </em><em><strong>ne</strong></em><em>(self, value, /)
+| Return self!=value.
+|</em><em>
+| </em><em><strong>reduce_ex</strong></em><em>(self, value, /)
+| Return state information for pickling.
+|</em><em>
+| </em><em><strong>repr</strong></em><em>(self, /)
+| Return repr(self).
+|</em><em>
+| </em><em><strong>rmul</strong></em><em>(self, value, /)
+| Return value</em>self.
+|
+| <strong>setitem</strong>(self, key, value, /)
+| Set self[key] to value.
+|
+| <strong>sizeof</strong>(self, /)
+| Size of the array in memory, in bytes.
+|
+| append(self, v, /)
+| Append new value v to the end of the array.
+|
+| buffer_info(self, /)
+| Return a tuple (address, length) giving the current memory address and the length in items of the buffer used to hold array&#x27;s contents.
+|
+| The length should be multiplied by the itemsize attribute to calculate
+| the buffer length in bytes.
+|
+| byteswap(self, /)
+| Byteswap all items of the array.
+|
+| If the items in the array are not 1, 2, 4, or 8 bytes in size, RuntimeError is
+| raised.
+|
+| count(self, v, /)
+| Return number of occurrences of v in the array.
+|
+| extend(self, bb, /)
+| Append items to the end of the array.
+|
+| frombytes(self, buffer, /)
+| Appends items from the string, interpreting it as an array of machine values, as if it had been read from a file using the fromfile() method).
+|
+| fromfile(self, f, n, /)
+| Read n objects from the file object f and append them to the end of the array.
+|
+| fromlist(self, list, /)
+| Append items to array from list.
+|
+| fromstring(self, buffer, /)
+| Appends items from the string, interpreting it as an array of machine values, as if it had been read from a file using the fromfile() method).
+|
+| This method is deprecated. Use frombytes instead.
+|
+| fromunicode(self, ustr, /)
+| Extends this array with data from the unicode string ustr.
+|
+| The array must be a unicode type array; otherwise a ValueError is raised.
+| Use array.frombytes(ustr.encode(...)) to append Unicode data to an array of
+| some other type.
+|
+| index(self, v, /)
+| Return index of first occurrence of v in the array.
+|
+| insert(self, i, v, /)
+| Insert a new item v into the array before position i.
+|
+| pop(self, i=-1, /)
+| Return the i-th element and delete it from the array.
+|
+| i defaults to -1.
+|
+| remove(self, v, /)
+| Remove the first occurrence of v in the array.
+|
+| reverse(self, /)
+| Reverse the order of the items in the array.
+|
+| tobytes(self, /)
+| Convert the array to an array of machine values and return the bytes representation.
+|
+| tofile(self, f, /)
+| Write all items (as machine values) to the file object f.
+|
+| tolist(self, /)
+| Convert array to an ordinary list with the same items.
+|
+| tostring(self, /)
+| Convert the array to an array of machine values and return the bytes representation.
+|
+| This method is deprecated. Use tobytes instead.
+|
+| tounicode(self, /)
+| Extends this array with data from the unicode string ustr.
+|
+| Convert the array to a unicode string. The array must be a unicode type array;
+| otherwise a ValueError is raised. Use array.tobytes().decode() to obtain a
+| unicode string from an array of some other type.</p><div id="5fe64145-4a84-4e87-9d30-ed9251b3793a" class="collection-content"><h4 class="collection-title"></h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Static methods defined here:</th></tr></thead><tbody><tr id="da6bee64-e8ab-40d5-bef1-9e50060258c7"><td class="cell-title"><a href="https://www.notion.so/new-args-kwargs-from-builtins-type-da6bee64e8ab40d5bef19e50060258c7">new(*args, **kwargs) from builtins.type</a></td></tr><tr id="7bccacb8-9021-4fa9-aef0-e63d2a3b1335"><td class="cell-title"><a href="https://www.notion.so/Create-and-return-a-new-object-See-help-type-for-accurate-signature-7bccacb890214fa9aef0e63d2a3b1335">Create and return a new object.  See help(type) for accurate signature.</a></td></tr><tr id="7471cd24-1f4f-4870-b32d-0ed1e806474f"><td class="cell-title"><a href="https://www.notion.so/7471cd241f4f4870b32d0ed1e806474f">----------------------------------------------------------------------</a></td></tr><tr id="92c6261c-de75-4bb7-922e-5ccad63533a4"><td class="cell-title"><a href="https://www.notion.so/Data-descriptors-defined-here-92c6261cde754bb7922e5ccad63533a4">Data descriptors defined here:</a></td></tr><tr id="30aaf45b-3c96-42ca-b0dd-554960596ecf"><td class="cell-title"><a href="https://www.notion.so/itemsize-30aaf45b3c9642cab0dd554960596ecf">itemsize</a></td></tr><tr id="7e8f8ba8-d276-4925-aacf-85ccb35fc24a"><td class="cell-title"><a href="https://www.notion.so/the-size-in-bytes-of-one-array-item-7e8f8ba8d2764925aacf85ccb35fc24a">the size, in bytes, of one array item</a></td></tr><tr id="a59250ad-ff6a-4558-b904-52a1003442ac"><td class="cell-title"><a href="https://www.notion.so/typecode-a59250adff6a4558b90452a1003442ac">typecode</a></td></tr><tr id="b77f69f7-f9d6-48ac-925d-eaf36e25367b"><td class="cell-title"><a href="https://www.notion.so/the-typecode-character-used-to-create-the-array-b77f69f7f9d648ac925deaf36e25367b">the typecode character used to create the array</a></td></tr><tr id="a4d900b8-ed04-4bfd-a503-7f823336328b"><td class="cell-title"><a href="https://www.notion.so/a4d900b8ed044bfda5037f823336328b">----------------------------------------------------------------------</a></td></tr><tr id="c905a69c-22b6-44ec-a1dd-da7b9ec0103b"><td class="cell-title"><a href="https://www.notion.so/Data-and-other-attributes-defined-here-c905a69c22b644eca1ddda7b9ec0103b">Data and other attributes defined here:</a></td></tr><tr id="f57cbcf9-502b-4cd0-857c-95c18fd597fc"><td class="cell-title"><a href="https://www.notion.so/hash-None-f57cbcf9502b4cd0857c95c18fd597fc">hash = None</a></td></tr></tbody></table></div><h2 id="ba5735b2-1130-4e8d-bb05-c4a384603e74" class=""><strong>Managing Files and Directories</strong></h2><h3 id="bc9cfa58-b2f3-4b68-bf1a-2bc67ceccfc9" class=""><strong>Working with Files</strong></h3><p id="1b6b8189-7b58-43e2-8ebc-13137c21cbb7" class=""><strong>os module</strong> provides a layer of abstraction between Python and the operating system which allows us to interact with the underlying system without us knowing whether we&#x27;re working on a Windows, Mac, Linux, or any other operating system supported by Python.</p><p id="36a73e22-4383-493a-867b-64937e59e978" class="">Some of the functions available from the os module are:</p><ul id="158e2bf9-2ee0-48fc-8c4b-27cc2fca4b60" class="bulleted-list"><li>remove function deletes a file<ul id="05f5ac20-fac0-4692-9574-b7b9639a256e" class="bulleted-list"><li>Trying to remove the file that doesn&#x27;t exist, the function will raise an error.</li></ul></li></ul><ul id="8913a5be-4706-4d2b-81ea-28a5bd378839" class="bulleted-list"><li>exists function checks whether a file exist</li></ul><ul id="54520077-20d4-459d-a147-fea0da70d02d" class="bulleted-list"><li>rename function changes name of a file<ul id="7eaa2daa-d830-474e-8d87-eb79c07678aa" class="bulleted-list"><li>The first parameter to rename function is the old name of the file and the second is new name.</li></ul></li></ul><h3 id="eb9a1fac-55ef-4c14-ab0e-b84ae71e6df9" class=""><strong>More File Informations</strong></h3><ul id="f57292f2-4c00-44b0-89ba-5cf9a3aeebc8" class="bulleted-list"><li>getsize checks a file size and returns the file size in bytes.</li></ul><ul id="da0d6514-ffd0-4688-b127-51fddfc9f2a5" class="bulleted-list"><li>getmitime checks when the file was last modified and returns Unix timestamp.</li></ul><ul id="7de82eae-b8b7-4b38-99e9-03966ad705c3" class="bulleted-list"><li>abspath function takes a filename and turns it into an absolute path.</li></ul><ul id="4eb7c274-7bdb-4b83-b68b-529ad61ea33f" class="bulleted-list"><li><strong>datetime module</strong> provides a function to convert the Unix timestamp.</li></ul></div></article></body></html>
